@@ -1,11 +1,43 @@
-/* --- FULL TOP BANNER IMAGE --- */
-.full-banner {
-    width: 100%;
-    height: auto;
-    display: block;
+/* HEADER BAR */
+.site-header {
+    background: #000;
+    color: #fff;
+    padding: 20px 40px;
 }
 
-/* --- NAVIGATION --- */
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* LEFT: LOGO */
+.header-left .logo {
+    height: 90px;
+    width: auto;
+}
+
+/* CENTER: RITCHIE'S + TAGLINE */
+.header-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ritchies-title {
+    margin: 0;
+    font-size: 42px;
+    color: #e00000;
+    font-family: 'Brush Script MT', cursive;
+}
+
+.header-tagline {
+    margin: 4px 0 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* NAV BAR */
 .main-nav {
     background: #000;
     border-top: 1px solid #222;
@@ -14,17 +46,16 @@
 .main-nav ul {
     list-style: none;
     display: flex;
-    gap: 45px;
-    padding: 18px 40px;
+    gap: 30px;
+    padding: 12px 40px;
     margin: 0;
 }
 
 .main-nav a {
     color: #fff;
     text-decoration: none;
-    font-size: 17px;
-    letter-spacing: 0.7px;
-    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.5px;
 }
 
 .main-nav a:hover {
