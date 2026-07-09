@@ -1,63 +1,161 @@
-/* HEADER BAR */
+/* ============================================
+   RITCHIE'S — TOP BANNER
+   ============================================ */
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: #000;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+/* ---------- HEADER BAR ---------- */
 .site-header {
     background: #000;
     color: #fff;
-    padding: 20px 40px;
 }
 
 .header-inner {
+    position: relative;           /* anchor for the flag corner */
+    overflow: hidden;             /* clip the diagonal stripes */
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 48px;
+    padding: 24px 40px;
+    min-height: 150px;
 }
 
-/* LEFT: LOGO */
+/* ---------- LEFT: LOGO ---------- */
 .header-left .logo {
-    height: 90px;
+    height: 130px;
     width: auto;
+    display: block;
 }
 
-/* CENTER: RITCHIE'S + TAGLINE */
-.header-center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
+/* ---------- CENTER: RITCHIE'S ---------- */
 .ritchies-title {
     margin: 0;
-    font-size: 42px;
-    color: #e00000;
-    font-family: 'Brush Script MT', cursive;
+    font-family: 'Kaushan Script', 'Brush Script MT', cursive;
+    font-size: clamp(48px, 7vw, 84px);
+    font-weight: 400;
+    color: #e01b1b;
+    line-height: 1;
 }
 
+/* ---------- TAGLINE (with vertical divider) ---------- */
 .header-tagline {
-    margin: 4px 0 0;
-    font-size: 16px;
-    color: #fff;
+    border-left: 2px solid #fff;
+    padding-left: 24px;
+    margin-right: 140px;          /* keep clear of the flag corner */
 }
 
-/* NAV BAR */
+.header-tagline p { margin: 0; }
+
+.tagline-script {
+    font-family: 'Yellowtail', cursive;
+    font-size: 26px;
+    color: #f5d000;               /* yellow script line */
+    line-height: 1.2;
+}
+
+.tagline-plain {
+    font-size: 20px;
+    color: #fff;
+    line-height: 1.4;
+}
+
+/* ---------- TRINIDAD FLAG CORNER ---------- */
+.flag-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 220px;
+    height: 100%;
+    pointer-events: none;
+}
+
+.flag-corner span {
+    position: absolute;
+    top: -40%;
+    height: 180%;
+    transform: rotate(35deg);
+    transform-origin: center;
+}
+
+.flag-red   { right: -70px; width: 160px; background: #da1a35; }
+.flag-white { right: 96px;  width: 34px;  background: #fff;    }
+.flag-black { right: 106px; width: 14px;  background: #000;    }
+
+/* ---------- NAV BAR ---------- */
 .main-nav {
     background: #000;
-    border-top: 1px solid #222;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
 }
 
 .main-nav ul {
     list-style: none;
     display: flex;
-    gap: 30px;
-    padding: 12px 40px;
+    flex-wrap: wrap;
+    gap: 44px;
+    padding: 0 40px;
     margin: 0;
 }
 
 .main-nav a {
+    display: inline-block;
+    padding: 16px 0 13px;
     color: #fff;
     text-decoration: none;
-    font-size: 15px;
-    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-bottom: 3px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
 }
 
-.main-nav a:hover {
-    color: #e00000;
+.main-nav a:hover,
+.main-nav a:focus-visible {
+    color: #e01b1b;
+}
+
+/* red underline on the current page */
+.main-nav a.active {
+    border-bottom-color: #e01b1b;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    .header-inner {
+        gap: 24px;
+        padding: 20px 24px;
+    }
+    .header-left .logo { height: 90px; }
+    .header-tagline { margin-right: 90px; }
+    .flag-corner { width: 140px; }
+    .flag-red   { right: -60px; width: 110px; }
+    .flag-white { right: 54px;  width: 24px; }
+    .flag-black { right: 62px;  width: 10px; }
+    .main-nav ul { gap: 26px; padding: 0 24px; }
+}
+
+@media (max-width: 640px) {
+    .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .header-tagline {
+        border-left: none;
+        padding-left: 0;
+        margin-right: 0;
+    }
+    .flag-corner { display: none; }   /* too tight on phones */
+    .main-nav ul {
+        gap: 18px;
+        justify-content: flex-start;
+    }
+    .main-nav a { font-size: 12px; letter-spacing: 1.5px; }
 }
