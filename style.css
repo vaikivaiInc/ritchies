@@ -62,10 +62,10 @@ body {
 .header-tagline p { margin: 0; }
 
 .tagline-script {
-    font-family: 'Alex Brush', cursive;
-    font-size: 30px;
-    color: #f5d000;               /* yellow handwritten line */
-    line-height: 1.1;
+    font-family: 'Courgette', cursive;
+    font-size: 24px;
+    color: #f5d000;               /* yellow line — readable script */
+    line-height: 1.2;
 }
 
 .tagline-plain {
@@ -76,14 +76,14 @@ body {
     line-height: 1.5;
 }
 
-/* ---------- TRINIDAD FLAG CORNER (pure CSS, matches mockup) ----------
-   One linear-gradient with hard stops draws the diagonal exactly:
-   black bg → thin white stripe → black band → white stripe → red corner.
-   Crisp at any size, no image file needed.
+/* ---------- TRINIDAD FLAG CORNER (inline SVG in index.html) ----------
+   The stripes are drawn as SVG polygons, so they stay crisp and keep
+   their exact proportions at any size.
 
-   Tuning knobs:
-   - 62deg      : steepness of the diagonal (higher = more vertical)
-   - the % stops: stripe positions/widths (each pair = one stripe edge)
+   To adjust, edit the polygon points in index.html:
+   - each polygon is: top-left-x,0  top-right-x,0  bottom-right-x,200  bottom-left-x,200
+   - move the x values LEFT (smaller) to show more red / wider stripes
+   - the top-x vs bottom-x difference (75 units) sets the diagonal angle
 */
 .flag-corner {
     position: absolute;
@@ -92,14 +92,12 @@ body {
     width: 260px;
     height: 100%;
     pointer-events: none;
-    background: linear-gradient(
-        62deg,
-        transparent      0 40%,
-        #ffffff        40% 46%,   /* thin white stripe */
-        #000000        46% 58%,   /* black band */
-        #ffffff        58% 66%,   /* second white stripe */
-        #da1a35        66% 100%   /* red corner */
-    );
+}
+
+.flag-corner svg {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 /* ---------- NAV BAR ---------- */

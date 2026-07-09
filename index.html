@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ritchie's — Born in Trinidad, Created in Canada</title>
 
-    <!-- Fonts: Yellowtail for "Ritchie's", Alex Brush for the yellow tagline, Montserrat for text + nav -->
+    <!-- Fonts: Yellowtail for "Ritchie's", Courgette for the yellow tagline, Montserrat for text + nav -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Alex+Brush&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Courgette&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -30,8 +30,17 @@
             <p class="tagline-plain">Created in Canada</p>
         </div>
 
-        <!-- Trinidad flag diagonal, top-right corner (pure CSS, see .flag-corner) -->
-        <div class="flag-corner" aria-hidden="true"></div>
+        <!-- Trinidad flag diagonal, top-right corner (inline SVG) -->
+        <div class="flag-corner" aria-hidden="true">
+            <svg viewBox="0 0 260 200" preserveAspectRatio="none">
+                <!-- thin white stripe (leftmost) -->
+                <polygon points="56,0 66,0 141,200 131,200" fill="#ffffff"/>
+                <!-- main white stripe -->
+                <polygon points="78,0 98,0 173,200 153,200" fill="#ffffff"/>
+                <!-- red corner -->
+                <polygon points="112,0 260,0 260,200 187,200" fill="#da1a35"/>
+            </svg>
+        </div>
 
     </div>
 
