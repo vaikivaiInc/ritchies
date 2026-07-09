@@ -31,14 +31,24 @@ body {
     height: 130px;
     width: auto;
     display: block;
+    /* thin white outline that follows the shape of the PNG
+       (requires the logo to have a transparent background)
+       increase the 1.5px values for a thicker outline */
+    filter:
+        drop-shadow( 1.5px  0    0 #fff)
+        drop-shadow(-1.5px  0    0 #fff)
+        drop-shadow( 0      1.5px 0 #fff)
+        drop-shadow( 0     -1.5px 0 #fff);
 }
 
 /* ---------- CENTER: RITCHIE'S ---------- */
 .ritchies-title {
     margin: 0;
-    font-family: 'Kaushan Script', 'Brush Script MT', cursive;
+    /* SignPainter HouseScript renders on Macs that have it installed;
+       everyone else gets Lobster from Google Fonts */
+    font-family: 'SignPainter HouseScript', 'SignPainter', 'Lobster', cursive;
     font-size: clamp(48px, 7vw, 84px);
-    font-weight: 400;
+    font-weight: 700;
     color: #e01b1b;
     line-height: 1;
 }
@@ -53,39 +63,52 @@ body {
 .header-tagline p { margin: 0; }
 
 .tagline-script {
-    font-family: 'Yellowtail', cursive;
-    font-size: 26px;
-    color: #f5d000;               /* yellow script line */
-    line-height: 1.2;
+    font-family: 'Avenir Next', 'Montserrat', sans-serif;
+    font-weight: 500;             /* Avenir Next Medium / Montserrat Medium */
+    font-size: 22px;
+    color: #f5d000;               /* yellow line */
+    line-height: 1.3;
 }
 
 .tagline-plain {
+    font-family: 'Avenir Next', 'Montserrat', sans-serif;
+    font-weight: 400;             /* Avenir Next Regular / Montserrat Regular */
     font-size: 20px;
     color: #fff;
     line-height: 1.4;
 }
 
-/* ---------- TRINIDAD FLAG CORNER ---------- */
+/* ---------- TRINIDAD FLAG CORNER (real flag image) ----------
+   The flag's black band naturally runs at ~31° — too shallow for
+   a banner corner — so we rotate the image to steepen the diagonal
+   and slide it so only the band + red fly-corner peek into view.
+
+   Tuning knobs:
+   --flag-rotate : steepness of the diagonal
+   --flag-size   : how big the flag is (bigger = stripes look wider)
+   --flag-x      : slide left/right (more negative = more red visible)
+*/
 .flag-corner {
+    --flag-rotate: 28deg;
+    --flag-size: 480px;
+    --flag-x: -190px;
+
     position: absolute;
     top: 0;
     right: 0;
-    width: 220px;
+    width: 260px;
     height: 100%;
+    overflow: hidden;          /* clips everything outside the corner */
     pointer-events: none;
 }
 
-.flag-corner span {
+.flag-corner img {
     position: absolute;
-    top: -40%;
-    height: 180%;
-    transform: rotate(35deg);
-    transform-origin: center;
+    top: 50%;
+    right: var(--flag-x);
+    width: var(--flag-size);
+    transform: translateY(-50%) rotate(var(--flag-rotate));
 }
-
-.flag-red   { right: -70px; width: 160px; background: #da1a35; }
-.flag-white { right: 96px;  width: 34px;  background: #fff;    }
-.flag-black { right: 106px; width: 14px;  background: #000;    }
 
 /* ---------- NAV BAR ---------- */
 .main-nav {
@@ -134,10 +157,11 @@ body {
     }
     .header-left .logo { height: 90px; }
     .header-tagline { margin-right: 90px; }
-    .flag-corner { width: 140px; }
-    .flag-red   { right: -60px; width: 110px; }
-    .flag-white { right: 54px;  width: 24px; }
-    .flag-black { right: 62px;  width: 10px; }
+    .flag-corner {
+        width: 160px;
+        --flag-size: 340px;
+        --flag-x: -140px;
+    }
     .main-nav ul { gap: 26px; padding: 0 24px; }
 }
 
