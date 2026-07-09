@@ -7,7 +7,7 @@
 body {
     margin: 0;
     background: #000;
-    font-family: 'Inter', Arial, sans-serif;
+    font-family: 'Montserrat', Arial, sans-serif;
 }
 
 /* ---------- HEADER BAR ---------- */
@@ -44,13 +44,12 @@ body {
 /* ---------- CENTER: RITCHIE'S ---------- */
 .ritchies-title {
     margin: 0;
-    /* SignPainter HouseScript renders on Macs that have it installed;
-       everyone else gets Lobster from Google Fonts */
-    font-family: 'SignPainter HouseScript', 'SignPainter', 'Lobster', cursive;
-    font-size: clamp(48px, 7vw, 84px);
-    font-weight: 700;
+    font-family: 'Yellowtail', 'Brush Script MT', cursive;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 400;             /* script fonts should not be bolded */
     color: #e01b1b;
-    line-height: 1;
+    line-height: 1.1;
+    padding-right: 10px;          /* room for the final flourish */
 }
 
 /* ---------- TAGLINE (with vertical divider) ---------- */
@@ -63,51 +62,44 @@ body {
 .header-tagline p { margin: 0; }
 
 .tagline-script {
-    font-family: 'Avenir Next', 'Montserrat', sans-serif;
-    font-weight: 500;             /* Avenir Next Medium / Montserrat Medium */
-    font-size: 22px;
-    color: #f5d000;               /* yellow line */
-    line-height: 1.3;
+    font-family: 'Alex Brush', cursive;
+    font-size: 30px;
+    color: #f5d000;               /* yellow handwritten line */
+    line-height: 1.1;
 }
 
 .tagline-plain {
-    font-family: 'Avenir Next', 'Montserrat', sans-serif;
-    font-weight: 400;             /* Avenir Next Regular / Montserrat Regular */
-    font-size: 20px;
+    font-family: 'Montserrat', 'Avenir Next', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
     color: #fff;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
-/* ---------- TRINIDAD FLAG CORNER (real flag image) ----------
-   The flag's black band naturally runs at ~31° — too shallow for
-   a banner corner — so we rotate the image to steepen the diagonal
-   and slide it so only the band + red fly-corner peek into view.
+/* ---------- TRINIDAD FLAG CORNER (pure CSS, matches mockup) ----------
+   One linear-gradient with hard stops draws the diagonal exactly:
+   black bg → thin white stripe → black band → white stripe → red corner.
+   Crisp at any size, no image file needed.
 
    Tuning knobs:
-   --flag-rotate : steepness of the diagonal
-   --flag-size   : how big the flag is (bigger = stripes look wider)
-   --flag-x      : slide left/right (more negative = more red visible)
+   - 62deg      : steepness of the diagonal (higher = more vertical)
+   - the % stops: stripe positions/widths (each pair = one stripe edge)
 */
 .flag-corner {
-    --flag-rotate: 28deg;
-    --flag-size: 480px;
-    --flag-x: -190px;
-
     position: absolute;
     top: 0;
     right: 0;
     width: 260px;
     height: 100%;
-    overflow: hidden;          /* clips everything outside the corner */
     pointer-events: none;
-}
-
-.flag-corner img {
-    position: absolute;
-    top: 50%;
-    right: var(--flag-x);
-    width: var(--flag-size);
-    transform: translateY(-50%) rotate(var(--flag-rotate));
+    background: linear-gradient(
+        62deg,
+        transparent      0 40%,
+        #ffffff        40% 46%,   /* thin white stripe */
+        #000000        46% 58%,   /* black band */
+        #ffffff        58% 66%,   /* second white stripe */
+        #da1a35        66% 100%   /* red corner */
+    );
 }
 
 /* ---------- NAV BAR ---------- */
@@ -157,11 +149,7 @@ body {
     }
     .header-left .logo { height: 90px; }
     .header-tagline { margin-right: 90px; }
-    .flag-corner {
-        width: 160px;
-        --flag-size: 340px;
-        --flag-x: -140px;
-    }
+    .flag-corner { width: 160px; }
     .main-nav ul { gap: 26px; padding: 0 24px; }
 }
 
