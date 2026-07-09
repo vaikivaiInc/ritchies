@@ -1,48 +1,8 @@
-/* --- TOP BANNER --- */
-.top-banner {
-    background: #000;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 40px;
-}
-
-.banner-left {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-.vaikivai-logo {
-    height: 120px;
-    width: auto;
-}
-
-.brand-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.ritchies-title {
-    font-family: 'Brush Script MT', cursive;
-    font-size: 60px;
-    color: #e00000;
-    margin: 0;
-    line-height: 1;
-}
-
-.origin-text {
-    margin: 0;
-    font-size: 18px;
-    letter-spacing: 0.5px;
-    color: #fff;
-}
-
-.banner-right .flag-graphic {
-    height: 90px;
-    width: auto;
+/* --- FULL TOP BANNER IMAGE --- */
+.full-banner {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* --- NAVIGATION --- */
