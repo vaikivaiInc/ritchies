@@ -1,0 +1,68 @@
+/* --- TOP BANNER --- */
+.top-banner {
+    background: #000;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    border-bottom: 2px solid #222;
+}
+
+.banner-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.vaikivai-logo {
+    height: 85px;
+    width: auto;
+    filter: drop-shadow(0 0 0 white);
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
+
+.brand-text .ritchies {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 48px;
+    color: #e00000;
+    margin: 0;
+}
+
+.tagline {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: #fff;
+}
+
+.banner-right .flag {
+    height: 60px;
+    width: auto;
+}
+
+/* --- NAVIGATION --- */
+.main-nav {
+    background: #000;
+    border-top: 1px solid #222;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    padding: 15px 40px;
+    margin: 0;
+}
+
+.main-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.main-nav a:hover {
+    color: #e00000;
+}
