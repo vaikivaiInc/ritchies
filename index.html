@@ -1,62 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ritchie's — Born in Trinidad, Created in Canada</title>
-
-    <!-- Fonts: Yellowtail for "Ritchie's", Courgette for the yellow tagline, Montserrat for text + nav -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Courgette&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Ritchie’s Catering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <div class="page">
 
-<header class="site-header">
-    <div class="header-inner">
-
+    <!-- HEADER -->
+    <header>
+      <div class="header-inner">
         <div class="header-left">
-            <img src="images/vaikivai-logo.png" alt="Vai-Ki-Vai — A Timi-Dodis Kitchen" class="logo">
+          <div class="vaikivai-logo-wrap">
+            <img src="images/vaikivai-logo.png" alt="Vai-Ki-Vai Logo" class="vaikivai-logo" />
+          </div>
         </div>
 
         <div class="header-center">
-            <h1 class="ritchies-title">Ritchie's</h1>
+          <h1>Ritchie’s</h1>
+          <p>Born in Trinidad. Created in Canada.</p>
         </div>
 
-        <div class="header-tagline">
-            <p class="tagline-script">Born in Trinidad,</p>
-            <p class="tagline-plain">Created in Canada</p>
+        <div class="header-right">
+          <div class="flags">
+            <img src="images/flag-trinidad.png" alt="Trinidad & Tobago" class="flag-icon" />
+            <img src="images/flag-canada.png" alt="Canada" class="flag-icon" />
+          </div>
+          <div class="divider"></div>
+          <div class="tagline">Catering • Events • Brands</div>
         </div>
+      </div>
+    </header>
 
-        <!-- Trinidad flag diagonal, top-right corner (inline SVG) -->
-        <div class="flag-corner" aria-hidden="true">
-            <svg viewBox="0 0 260 200" preserveAspectRatio="none">
-                <!-- thin white stripe (leftmost) -->
-                <polygon points="56,0 66,0 141,200 131,200" fill="#ffffff"/>
-                <!-- main white stripe -->
-                <polygon points="78,0 98,0 173,200 153,200" fill="#ffffff"/>
-                <!-- red corner -->
-                <polygon points="112,0 260,0 260,200 187,200" fill="#da1a35"/>
-            </svg>
-        </div>
-
-    </div>
-
-    <nav class="main-nav" aria-label="Main navigation">
-        <ul>
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">About Ritchie's</a></li>
-            <li><a href="#">Brands</a></li>
-            <li><a href="#">Catering &amp; Events</a></li>
-            <li><a href="#">Community</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
+    <!-- NAV -->
+    <nav>
+      <div class="nav-inner">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About Ritchie’s</a>
+        <a href="#brands" class="nav-link">Brands</a>
+        <a href="#catering" class="nav-link">Catering & Events</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
     </nav>
-</header>
 
-<!-- page content goes here -->
+    <!-- MAIN -->
+    <main>
 
+      <!-- HERO -->
+      <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-eyebrow">Authentic Trinidadian Catering</div>
+          <h2 class="hero-title">Authentic. <span>Bold.</span> Unforgettable.</h2>
+          <p class="hero-subtitle">
+            Serving the rich, vibrant flavours of Trinidad & Tobago — crafted fresh in Canada.
+          </p>
+          <div class="hero-buttons">
+            <button class="btn btn-red">Order Now</button>
+            <button class="btn btn-light">View Menu</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="section-header">
+          <h3 class="section-title">About Ritchie’s</h3>
+          <p class="section-subtitle">Trinidadian roots. Canadian opportunity. Modern hospitality.</p>
+        </div>
+
+        <div class="about">
+          <div class="about-text">
+            <p><strong>Ritchie’s</strong> is built on Trinidadian roots and Canadian opportunity — delivering authentic Caribbean flavours with modern hospitality.</p>
+            <p>From street‑style favourites to elevated catering menus, every dish is crafted with care, using quality ingredients and time‑honoured recipes.</p>
+            <p>Whether you’re feeding a family, a wedding, or a corporate team, Ritchie’s brings the warmth of Trinidad to every table.</p>
+          </div>
+
+          <div class="about-visual">
+            <div class="about-card"><img src="images/map-outline.jpg" alt="Trinidad Map" /></div>
+            <div class="about-card"><img src="images/hibiscus.jpg" alt="Hibiscus" /></div>
+            <div class="about-card"><img src="images/food-plate-1.jpg" alt="Food Plate" /></div>
+            <div class="about-card"><img src="images/food-plate-2.jpg" alt="Food Plate" /></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRANDS -->
+      <section id="brands">
+        <div class="section-header">
+          <h3 class="section-title">Flavour in Every Form</h3>
+          <p class="section-subtitle">One vision, multiple ways to experience it.</p>
+        </div>
+
+        <div class="brands-grid">
+          <article class="brand-card">
+            <div class="brand-image"><img src="images/pastries.jpg" alt="Pastries" /></div>
+            <h4 class="brand-title">Mike & Ritchie’s Food Shop</h4>
+            <p class="brand-text">Fresh Trinidadian cuisine daily — from hot meals to grab‑and‑go favourites.</p>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-image"><img src="images/pepper-sauce.jpg" alt="Pepper Sauce" /></div>
+            <h4 class="brand-title">Ritchie’s Pepper Sauce</h4>
+            <p class="brand-text">Scotch bonnet heat, Trinidadian pride — small‑batch flavour.</p>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-image"><img src="images/pot-icon.jpg" alt="Catering Pot" /></div>
+            <h4 class="brand-title">Ritchie’s Catering & Events</h4>
+            <p class="brand-text">Corporate, weddings, and family events — we bring the flavour.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- CATERING -->
+      <section id="catering">
+        <div class="section-header">
+          <h3 class="section-title">Catering & Events</h3>
+          <p class="section-subtitle">From intimate gatherings to large corporate functions.</p>
+        </div>
+
+        <div class="catering">
+          <div class="catering-image"><img src="images/catering-spread.jpg" alt="Catering Spread" /></div>
+          <div class="catering-text">
+            <p>Whether you’re planning a boardroom lunch, a wedding reception, or a milestone celebration, Ritchie’s delivers unforgettable Caribbean flavour.</p>
+            <p>Menus tailored to your event size, dietary needs, and budget — always rooted in Trinidadian taste.</p>
+            <button class="btn btn-red">Request a Quote</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-header">
+          <h3 class="section-title">Get in Touch</h3>
+          <p class="section-subtitle">Tell us about your event — we’ll bring the flavour.</p>
+        </div>
+
+        <div class="contact">
+          <div class="contact-form">
+            <form>
+              <div class="form-row">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-input" placeholder="Your name" />
+              </div>
+
+              <div class="form-row">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" placeholder="you@example.com" />
+              </div>
+
+              <div class="form-row">
+                <label class="form-label">Event Type</label>
+                <select class="form-select">
+                  <option>Select an event type</option>
+                  <option>Corporate</option>
+                  <option>Wedding</option>
+                  <option>Family Gathering</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <label class="form-label">Message</label>
+                <textarea class="form-textarea" placeholder="Event details, date, guest count..."></textarea>
+              </div>
+
+              <button class="btn btn-red">Send Message</button>
+            </form>
+          </div>
+
+          <div class="contact-info">
+            <p><strong>Mike & Ritchie’s Food Shop</strong></p>
+            <p>Mississauga, Ontario, Canada</p>
+            <p>Phone: <span class="accent">+1 (XXX) XXX‑XXXX</span></p>
+            <p>Email: <span class="accent">info@ritchiescatering.ca</span></p>
+            <p style="margin-top:10px;">Proudly Trinidadian. Proudly Canadian.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-nav">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#brands">Brands</a>
+          <a href="#catering">Catering & Events</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div>© 2023 Ritchie’s Catering. All Rights Reserved.</div>
+
+        <div class="footer-flags">
+          <img src="images/flag-trinidad.png" alt="Trinidad & Tobago" />
+          <img src="images/flag-canada.png" alt="Canada" />
+        </div>
+      </div>
+    </footer>
+
+  </div>
 </body>
 </html>

@@ -1,171 +1,336 @@
-/* ============================================
-   RITCHIE'S — TOP BANNER
-   ============================================ */
-
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    background: #000;
-    font-family: 'Montserrat', Arial, sans-serif;
+:root {
+  --black: #000;
+  --white: #fff;
+  --red: #e30613;
+  --accent-gold: #f6b800;
+  --accent-orange: #f28c28;
+  --accent-green: #2e7d32;
+  --bg-dark: #111;
+  --text-muted: #ccc;
+  --max-width: 1200px;
+  --radius: 8px;
 }
 
-/* ---------- HEADER BAR ---------- */
-.site-header {
-    background: #000;
-    color: #fff;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--white);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+/* HEADER */
+
+header {
+  background-color: var(--black);
+  border-bottom: 1px solid #222;
 }
 
 .header-inner {
-    position: relative;           /* anchor for the flag corner */
-    overflow: hidden;             /* clip the diagonal stripes */
-    display: flex;
-    align-items: center;
-    gap: 48px;
-    padding: 24px 40px;
-    min-height: 150px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 20px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
 
-/* ---------- LEFT: LOGO ---------- */
-.header-left .logo {
-    height: 130px;
-    width: auto;
-    display: block;
-    /* thin white outline that follows the shape of the PNG
-       (requires the logo to have a transparent background)
-       increase the 1.5px values for a thicker outline */
-    filter:
-        drop-shadow( 1.5px  0    0 #fff)
-        drop-shadow(-1.5px  0    0 #fff)
-        drop-shadow( 0      1.5px 0 #fff)
-        drop-shadow( 0     -1.5px 0 #fff);
+.vaikivai-logo {
+  height: 64px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px var(--white);
 }
 
-/* ---------- CENTER: RITCHIE'S ---------- */
-.ritchies-title {
-    margin: 0;
-    font-family: 'Yellowtail', 'Brush Script MT', cursive;
-    font-size: clamp(52px, 7vw, 88px);
-    font-weight: 400;             /* script fonts should not be bolded */
-    color: #e01b1b;
-    line-height: 1.1;
-    padding-right: 10px;          /* room for the final flourish */
+.header-center h1 {
+  font-family: "Segoe Script", "Brush Script MT", cursive;
+  font-size: 2rem;
+  color: var(--red);
 }
 
-/* ---------- TAGLINE (with vertical divider) ---------- */
-.header-tagline {
-    border-left: 2px solid #fff;
-    padding-left: 24px;
-    margin-right: 140px;          /* keep clear of the flag corner */
+.header-center p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
-.header-tagline p { margin: 0; }
-
-.tagline-script {
-    font-family: 'Courgette', cursive;
-    font-size: 24px;
-    color: #f5d000;               /* yellow line — readable script */
-    line-height: 1.2;
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.tagline-plain {
-    font-family: 'Montserrat', 'Avenir Next', sans-serif;
-    font-weight: 400;
-    font-size: 19px;
-    color: #fff;
-    line-height: 1.5;
+.flag-icon {
+  height: 18px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--white);
 }
 
-/* ---------- TRINIDAD FLAG CORNER (inline SVG in index.html) ----------
-   The stripes are drawn as SVG polygons, so they stay crisp and keep
-   their exact proportions at any size.
-
-   To adjust, edit the polygon points in index.html:
-   - each polygon is: top-left-x,0  top-right-x,0  bottom-right-x,200  bottom-left-x,200
-   - move the x values LEFT (smaller) to show more red / wider stripes
-   - the top-x vs bottom-x difference (75 units) sets the diagonal angle
-*/
-.flag-corner {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 260px;
-    height: 100%;
-    pointer-events: none;
+.divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--red);
 }
 
-.flag-corner svg {
-    display: block;
-    width: 100%;
-    height: 100%;
+.tagline {
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
-/* ---------- NAV BAR ---------- */
-.main-nav {
-    background: #000;
-    border-top: 1px solid #1a1a1a;
-    border-bottom: 1px solid #1a1a1a;
+/* NAV */
+
+nav {
+  background-color: var(--black);
 }
 
-.main-nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 44px;
-    padding: 0 40px;
-    margin: 0;
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 8px 20px 14px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
 }
 
-.main-nav a {
-    display: inline-block;
-    padding: 16px 0 13px;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    border-bottom: 3px solid transparent;
-    transition: color .15s ease, border-color .15s ease;
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
-.main-nav a:hover,
-.main-nav a:focus-visible {
-    color: #e01b1b;
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--red);
+  transition: width 0.2s ease-out;
 }
 
-/* red underline on the current page */
-.main-nav a.active {
-    border-bottom-color: #e01b1b;
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
 }
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 900px) {
-    .header-inner {
-        gap: 24px;
-        padding: 20px 24px;
-    }
-    .header-left .logo { height: 90px; }
-    .header-tagline { margin-right: 90px; }
-    .flag-corner { width: 160px; }
-    .main-nav ul { gap: 26px; padding: 0 24px; }
+/* HERO */
+
+.hero {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 40px;
 }
 
-@media (max-width: 640px) {
-    .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-    .header-tagline {
-        border-left: none;
-        padding-left: 0;
-        margin-right: 0;
-    }
-    .flag-corner { display: none; }   /* too tight on phones */
-    .main-nav ul {
-        gap: 18px;
-        justify-content: flex-start;
-    }
-    .main-nav a { font-size: 12px; letter-spacing: 1.5px; }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("images/hero-food.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.4), rgba(0,0,0,0.1));
+}
+
+.hero-content {
+  position: relative;
+  padding: 40px 32px;
+  max-width: 520px;
+}
+
+.hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+}
+
+.hero-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.hero-title span {
+  color: var(--red);
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-red {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.btn-light {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+/* ABOUT */
+
+.about {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+}
+
+.about-text {
+  background-color: #141414;
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.about-text p {
+  color: var(--text-muted);
+}
+
+.about-visual {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.about-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* BRANDS */
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.brand-card {
+  background-color: #141414;
+  border-radius: var(--radius);
+  padding: 14px;
+  border: 1px solid #222;
+}
+
+.brand-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.brand-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* CATERING */
+
+.catering {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+  background: linear-gradient(135deg, #000, #1a0003, #000);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.catering-text p {
+  color: var(--text-muted);
+}
+
+/* CONTACT */
+
+.contact {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+}
+
+.contact-form {
+  background-color: #141414;
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.form-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background-color: #0c0c0c;
+  border: 1px solid #333;
+  color: var(--white);
+}
+
+.form-textarea {
+  min-height: 100px;
+}
+
+/* FOOTER */
+
+footer {
+  background-color: var(--black);
+  border-top: 1px solid #222;
+  padding: 16px 20px;
+}
+
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-flags img {
+  height: 16px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--white);
 }
