@@ -11,199 +11,168 @@
   <div class="page">
 
     <!-- HEADER -->
-    <header>
+    <header class="header">
       <div class="header-inner">
+
+        <!-- LEFT: Vai-Ki-Vai Logo -->
         <div class="header-left">
-          <div class="vaikivai-logo-wrap">
-            <img src="images/vaikivai-logo.png" alt="Vai-Ki-Vai Logo" class="vaikivai-logo" />
-          </div>
+          <img src="images/vaikivai-logo.png" alt="Vai-Ki-Vai Logo" class="vaikivai-logo">
         </div>
 
+        <!-- CENTER: Ritchie's Logo -->
         <div class="header-center">
-          <h1>Ritchie’s</h1>
-          <p>Born in Trinidad. Created in Canada.</p>
+          <img src="images/Ritchies-logo.png" alt="Ritchie's Logo" class="ritchies-logo">
+          <p class="header-tagline">Born in Trinidad. Created in Canada.</p>
         </div>
 
+        <!-- RIGHT: Flags -->
         <div class="header-right">
-          <div class="flags">
-            <img src="images/flag-trinidad.png" alt="Trinidad & Tobago" class="flag-icon" />
-            <img src="images/flag-canada.png" alt="Canada" class="flag-icon" />
-          </div>
-          <div class="divider"></div>
-          <div class="tagline">Catering • Events • Brands</div>
+          <img src="images/flag-trinidad.png" alt="Trinidad & Tobago" class="flag-icon">
+          <img src="images/flag-canada.png" alt="Canada" class="flag-icon">
         </div>
-      </div>
-    </header>
 
-    <!-- NAV -->
-    <nav>
-      <div class="nav-inner">
+      </div>
+
+      <!-- NAVIGATION -->
+      <nav class="nav">
         <a href="#home" class="nav-link active">Home</a>
         <a href="#about" class="nav-link">About Ritchie’s</a>
         <a href="#brands" class="nav-link">Brands</a>
         <a href="#catering" class="nav-link">Catering & Events</a>
         <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <h3 class="hero-eyebrow">Authentic Trinidadian Catering</h3>
+        <h1 class="hero-title">Authentic. <span>Bold.</span> Unforgettable.</h1>
+        <p class="hero-subtitle">
+          Serving the rich, vibrant flavours of Trinidad & Tobago — crafted fresh in Canada.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-red">ORDER NOW</button>
+          <button class="btn btn-light">VIEW MENU</button>
+        </div>
       </div>
-    </nav>
+    </section>
 
-    <!-- MAIN -->
-    <main>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2 class="section-title">About Ritchie’s</h2>
+      <p class="section-subtitle">Trinidadian roots. Canadian opportunity. Modern hospitality.</p>
 
-      <!-- HERO -->
-      <section id="home" class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-          <div class="hero-eyebrow">Authentic Trinidadian Catering</div>
-          <h2 class="hero-title">Authentic. <span>Bold.</span> Unforgettable.</h2>
-          <p class="hero-subtitle">
-            Serving the rich, vibrant flavours of Trinidad & Tobago — crafted fresh in Canada.
+      <div class="about-grid">
+        <div class="about-text">
+          <p><strong>Ritchie’s</strong> is built on Trinidadian roots and Canadian opportunity — delivering authentic Caribbean flavours with modern hospitality.</p>
+          <p>From street‑style favourites to elevated catering menus, every dish is crafted with care, using quality ingredients and time‑honoured recipes.</p>
+          <p>Whether you’re feeding a family, a wedding, or a corporate team, Ritchie’s brings the warmth of Trinidad to every table.</p>
+        </div>
+
+        <div class="about-images">
+          <img src="images/map-outline.jpg" class="about-img">
+          <img src="images/hibiscus.jpg" class="about-img">
+          <img src="images/food-plate-1.jpg" class="about-img">
+          <img src="images/food-plate-2.jpg" class="about-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- BRANDS -->
+    <section id="brands" class="section">
+      <h2 class="section-title">Flavour in Every Form</h2>
+      <p class="section-subtitle">One vision, multiple ways to experience it.</p>
+
+      <div class="brands-grid">
+
+        <div class="brand-card">
+          <img src="images/pastries.jpg" class="brand-img">
+          <h3 class="brand-title">Mike & Ritchie’s Food Shop</h3>
+          <p class="brand-text">Fresh Trinidadian cuisine daily — from hot meals to grab‑and‑go favourites.</p>
+        </div>
+
+        <div class="brand-card">
+          <img src="images/pepper-sauce.jpg" class="brand-img">
+          <h3 class="brand-title">Ritchie’s Pepper Sauce</h3>
+          <p class="brand-text">Scotch bonnet heat. Trinidadian flavour.</p>
+        </div>
+
+        <div class="brand-card">
+          <img src="images/pot-icon.jpg" class="brand-img">
+          <h3 class="brand-title">Ritchie’s Catering & Events</h3>
+          <p class="brand-text">Corporate, weddings, family events — we bring the flavour.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CATERING -->
+    <section id="catering" class="section">
+      <h2 class="section-title">Catering & Events</h2>
+      <p class="section-subtitle">From intimate gatherings to large corporate functions.</p>
+
+      <div class="catering-grid">
+        <img src="images/catering-spread.jpg" class="catering-img">
+
+        <div class="catering-text">
+          <p>Whether you’re planning a boardroom lunch, a wedding reception, or a milestone celebration, Ritchie’s delivers unforgettable Caribbean flavour.</p>
+          <p>Menus tailored to your event size, dietary needs, and budget — always rooted in Trinidadian taste.</p>
+          <button class="btn btn-red">REQUEST A QUOTE</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-subtitle">Tell us about your event — we’ll bring the flavour.</p>
+
+      <div class="contact-grid">
+
+        <form class="contact-form">
+          <label>Name</label>
+          <input type="text" class="form-input">
+
+          <label>Email</label>
+          <input type="email" class="form-input">
+
+          <label>Event Type</label>
+          <select class="form-input">
+            <option>Corporate</option>
+            <option>Wedding</option>
+            <option>Family Gathering</option>
+            <option>Other</option>
+          </select>
+
+          <label>Message</label>
+          <textarea class="form-textarea"></textarea>
+
+          <button class="btn btn-red">SEND MESSAGE</button>
+        </form>
+
+        <div class="contact-info">
+          <p><strong>Mike & Ritchie’s Food Shop</strong></p>
+          <p>6809 Steeles Ave W, Unit 5<br>Toronto, ON L4L 1S6</p>
+          <p>(289) 499‑0460</p>
+          <p>ritchiesfoodshop@gmail.com</p>
+          <p class="contact-flags">
+            <img src="images/flag-trinidad.png" class="flag-icon">
+            <img src="images/flag-canada.png" class="flag-icon">
           </p>
-          <div class="hero-buttons">
-            <button class="btn btn-red">Order Now</button>
-            <button class="btn btn-light">View Menu</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about">
-        <div class="section-header">
-          <h3 class="section-title">About Ritchie’s</h3>
-          <p class="section-subtitle">Trinidadian roots. Canadian opportunity. Modern hospitality.</p>
         </div>
 
-        <div class="about">
-          <div class="about-text">
-            <p><strong>Ritchie’s</strong> is built on Trinidadian roots and Canadian opportunity — delivering authentic Caribbean flavours with modern hospitality.</p>
-            <p>From street‑style favourites to elevated catering menus, every dish is crafted with care, using quality ingredients and time‑honoured recipes.</p>
-            <p>Whether you’re feeding a family, a wedding, or a corporate team, Ritchie’s brings the warmth of Trinidad to every table.</p>
-          </div>
-
-          <div class="about-visual">
-            <div class="about-card"><img src="images/map-outline.jpg" alt="Trinidad Map" /></div>
-            <div class="about-card"><img src="images/hibiscus.jpg" alt="Hibiscus" /></div>
-            <div class="about-card"><img src="images/food-plate-1.jpg" alt="Food Plate" /></div>
-            <div class="about-card"><img src="images/food-plate-2.jpg" alt="Food Plate" /></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- BRANDS -->
-      <section id="brands">
-        <div class="section-header">
-          <h3 class="section-title">Flavour in Every Form</h3>
-          <p class="section-subtitle">One vision, multiple ways to experience it.</p>
-        </div>
-
-        <div class="brands-grid">
-          <article class="brand-card">
-            <div class="brand-image"><img src="images/pastries.jpg" alt="Pastries" /></div>
-            <h4 class="brand-title">Mike & Ritchie’s Food Shop</h4>
-            <p class="brand-text">Fresh Trinidadian cuisine daily — from hot meals to grab‑and‑go favourites.</p>
-          </article>
-
-          <article class="brand-card">
-            <div class="brand-image"><img src="images/pepper-sauce.jpg" alt="Pepper Sauce" /></div>
-            <h4 class="brand-title">Ritchie’s Pepper Sauce</h4>
-            <p class="brand-text">Scotch bonnet heat, Trinidadian pride — small‑batch flavour.</p>
-          </article>
-
-          <article class="brand-card">
-            <div class="brand-image"><img src="images/pot-icon.jpg" alt="Catering Pot" /></div>
-            <h4 class="brand-title">Ritchie’s Catering & Events</h4>
-            <p class="brand-text">Corporate, weddings, and family events — we bring the flavour.</p>
-          </article>
-        </div>
-      </section>
-
-      <!-- CATERING -->
-      <section id="catering">
-        <div class="section-header">
-          <h3 class="section-title">Catering & Events</h3>
-          <p class="section-subtitle">From intimate gatherings to large corporate functions.</p>
-        </div>
-
-        <div class="catering">
-          <div class="catering-image"><img src="images/catering-spread.jpg" alt="Catering Spread" /></div>
-          <div class="catering-text">
-            <p>Whether you’re planning a boardroom lunch, a wedding reception, or a milestone celebration, Ritchie’s delivers unforgettable Caribbean flavour.</p>
-            <p>Menus tailored to your event size, dietary needs, and budget — always rooted in Trinidadian taste.</p>
-            <button class="btn btn-red">Request a Quote</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact">
-        <div class="section-header">
-          <h3 class="section-title">Get in Touch</h3>
-          <p class="section-subtitle">Tell us about your event — we’ll bring the flavour.</p>
-        </div>
-
-        <div class="contact">
-          <div class="contact-form">
-            <form>
-              <div class="form-row">
-                <label class="form-label">Name</label>
-                <input type="text" class="form-input" placeholder="Your name" />
-              </div>
-
-              <div class="form-row">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-input" placeholder="you@example.com" />
-              </div>
-
-              <div class="form-row">
-                <label class="form-label">Event Type</label>
-                <select class="form-select">
-                  <option>Select an event type</option>
-                  <option>Corporate</option>
-                  <option>Wedding</option>
-                  <option>Family Gathering</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <div class="form-row">
-                <label class="form-label">Message</label>
-                <textarea class="form-textarea" placeholder="Event details, date, guest count..."></textarea>
-              </div>
-
-              <button class="btn btn-red">Send Message</button>
-            </form>
-          </div>
-
-          <div class="contact-info">
-            <p><strong>Mike & Ritchie’s Food Shop</strong></p>
-            <p>Mississauga, Ontario, Canada</p>
-            <p>Phone: <span class="accent">+1 (XXX) XXX‑XXXX</span></p>
-            <p>Email: <span class="accent">info@ritchiescatering.ca</span></p>
-            <p style="margin-top:10px;">Proudly Trinidadian. Proudly Canadian.</p>
-          </div>
-        </div>
-      </section>
-
-    </main>
+      </div>
+    </section>
 
     <!-- FOOTER -->
-    <footer>
-      <div class="footer-inner">
-        <div class="footer-nav">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#brands">Brands</a>
-          <a href="#catering">Catering & Events</a>
-          <a href="#contact">Contact</a>
-        </div>
-
-        <div>© 2023 Ritchie’s Catering. All Rights Reserved.</div>
-
-        <div class="footer-flags">
-          <img src="images/flag-trinidad.png" alt="Trinidad & Tobago" />
-          <img src="images/flag-canada.png" alt="Canada" />
-        </div>
-      </div>
+    <footer class="footer">
+      <p>© 2023 Ritchie’s Catering. All Rights Reserved.</p>
+      <p>Proudly Trinidadian. Proudly Canadian.</p>
     </footer>
 
   </div>
