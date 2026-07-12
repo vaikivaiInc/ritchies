@@ -11,10 +11,10 @@ img {
   max-width: 100%;
 }
 
-/* HEADER */
+/* HEADER — Concept V1 EXACT */
 .header {
   background: #000;
-  padding: 30px 0 10px 0;
+  padding: 15px 0 5px 0; /* reduced height */
   border-bottom: 1px solid #222;
 }
 
@@ -28,7 +28,7 @@ img {
 }
 
 .vk-logo {
-  width: 260px;
+  width: 230px;
   height: auto;
 }
 
@@ -39,22 +39,23 @@ img {
 
 .header-tagline {
   text-align: center;
-  margin-top: 8px;
+  margin-top: 6px; /* closer to logo */
   font-size: 15px;
   color: #ccc;
 }
 
 .combined-flags {
-  width: 160px;
+  width: 150px;
   height: auto;
   margin-left: auto;
 }
 
+/* NAV */
 .nav {
   display: flex;
   justify-content: center;
   gap: 40px;
-  padding: 15px 0;
+  padding: 10px 0;
 }
 
 .nav-link {
@@ -86,7 +87,7 @@ img {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.5);
 }
 
 .hero-content {
