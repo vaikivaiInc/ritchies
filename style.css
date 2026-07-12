@@ -103,30 +103,41 @@ img {
   border-bottom: 2px solid red;
 }
 
-/* HERO */
+/* HERO — split panel: text 1/4 left, image 3/4 right */
 .hero {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  min-height: 450px;
+  border-bottom: 1px solid #222;
+}
+
+.hero-text {
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 36px 28px;
+}
+
+.hero-image {
   position: relative;
-  height: 450px;
+  overflow: hidden;
 }
 
-.hero-bg {
-  background-image: url("images/hero-food.jpg");
-  background-size: cover;
-  background-position: center;
+.hero-image img {
+  width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
-.hero-overlay {
+/* soft blend where the black panel meets the photo */
+.hero-image::before {
+  content: "";
   position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.hero-content {
-  position: absolute;
-  top: 30%;
-  left: 10%;
-  max-width: 480px;
+  inset: 0 auto 0 0;
+  width: 80px;
+  background: linear-gradient(to right, #000, transparent);
+  z-index: 1;
 }
 
 .hero-eyebrow {
@@ -137,7 +148,8 @@ img {
 }
 
 .hero-title {
-  font-size: 38px;
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 1.2;
   margin: 8px 0;
 }
 
@@ -323,17 +335,30 @@ img {
   }
 
   .hero {
-    height: 380px;
+    grid-template-columns: 1fr;   /* stack: text panel, then image */
+    min-height: 0;
   }
 
-  .hero-content {
-    left: 6%;
-    top: 28%;
-    max-width: 88%;
+  .hero-text {
+    padding: 28px 18px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-image {
+    height: 240px;
+  }
+
+  .hero-image::before {
+    /* blend from top on mobile since panels stack vertically */
+    inset: 0 0 auto 0;
+    width: auto;
+    height: 60px;
+    background: linear-gradient(to bottom, #000, transparent);
   }
 
   .hero-title {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .section {
