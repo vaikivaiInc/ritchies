@@ -28,7 +28,7 @@ img {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 4px 16px;
+  padding: 8px 16px 2px 16px;
 }
 
 .header-left,
@@ -54,25 +54,26 @@ img {
 /* Logos capped by HEIGHT — images are cropped tight,
    so these values map directly to visible artwork size */
 .vk-logo {
-  height: 96px;
-  width: auto;
-}
-
-.ritchies-logo {
   height: 84px;
   width: auto;
 }
 
+.ritchies-logo {
+  height: 88px;
+  width: auto;
+}
+
 .header-tagline {
-  margin: 6px 0 0 0;
-  font-size: 13px;
+  margin: 14px 0 0 0;   /* clear gap below the wordmark — adjust to taste */
+  font-size: 12px;
   color: #f6b800;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   text-align: center;
 }
 
 .combined-flags {
-  height: 46px;
+  height: 40px;
   width: auto;
 }
 
@@ -294,15 +295,15 @@ img {
   }
 
   .vk-logo {
-    height: 72px;
-  }
-
-  .ritchies-logo {
     height: 64px;
   }
 
+  .ritchies-logo {
+    height: 68px;
+  }
+
   .combined-flags {
-    height: 36px;
+    height: 32px;
     margin-top: 2px;
   }
 
