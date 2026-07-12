@@ -302,6 +302,13 @@ img {
     height: 68px;
   }
 
+  .header-tagline {
+    margin-top: 10px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
   .combined-flags {
     height: 32px;
     margin-top: 2px;
