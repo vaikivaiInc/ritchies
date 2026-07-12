@@ -15,7 +15,7 @@ img {
   max-width: 100%;
 }
 
-/* HEADER — FIXED BY IMAGE HEIGHTS */
+/* HEADER — tight, height-driven */
 .header {
   background: #000;
   padding-top: 6px;
@@ -28,38 +28,58 @@ img {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 0 16px;
+  padding: 4px 16px;
 }
 
-/* FIX: CONTROL IMAGE HEIGHTS */
+.header-left,
+.header-center,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-left {
+  justify-content: flex-start;
+}
+
+.header-center {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header-right {
+  justify-content: flex-end;
+}
+
+/* Logos capped by HEIGHT so the banner stays compact
+   regardless of each image file's proportions */
 .vk-logo {
-  height: 70px;
+  height: 92px;
   width: auto;
 }
 
 .ritchies-logo {
-  height: 60px;
+  height: 96px;
   width: auto;
-}
-
-.combined-flags {
-  height: 40px;
-  width: auto;
-}
-
-.header-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .header-tagline {
-  margin-top: 4px;
+  /* Negative margin compensates for transparent space
+     baked into the Ritchie's PNG — reduce/remove once
+     the image is cropped tight */
+  margin: -8px 0 0 0;
   font-size: 13px;
-  color: #ccc;
+  color: #f6b800;
+  letter-spacing: 1.5px;
+  text-align: center;
 }
 
-/* NAV */
+.combined-flags {
+  height: 34px;
+  width: auto;
+}
+
+/* NAV — sits tight under header */
 .nav {
   max-width: 1200px;
   margin: 0 auto;
@@ -83,7 +103,7 @@ img {
   border-bottom: 2px solid red;
 }
 
-/* HERO — UNCHANGED */
+/* HERO */
 .hero {
   position: relative;
   height: 450px;
@@ -99,7 +119,7 @@ img {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .hero-content {
@@ -270,16 +290,23 @@ img {
     text-align: center;
   }
 
+  .header-left,
+  .header-center,
+  .header-right {
+    justify-content: center;
+  }
+
   .vk-logo {
-    height: 60px;
+    height: 74px;
   }
 
   .ritchies-logo {
-    height: 55px;
+    height: 80px;
   }
 
   .combined-flags {
-    height: 35px;
+    height: 28px;
+    margin-top: 2px;
   }
 
   .nav {
