@@ -107,7 +107,7 @@ img {
 .hero {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  min-height: 450px;
+  height: 450px;              /* fixed — image can no longer stretch it */
   border-bottom: 1px solid #222;
 }
 
@@ -125,6 +125,8 @@ img {
 }
 
 .hero-image img {
+  position: absolute;         /* removed from layout: fills panel, crops overflow */
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -336,7 +338,8 @@ img {
 
   .hero {
     grid-template-columns: 1fr;   /* stack: text panel, then image */
-    min-height: 0;
+    grid-template-rows: auto 240px;
+    height: auto;
   }
 
   .hero-text {
@@ -345,9 +348,7 @@ img {
     align-items: center;
   }
 
-  .hero-image {
-    height: 240px;
-  }
+
 
   .hero-image::before {
     /* blend from top on mobile since panels stack vertically */
