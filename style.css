@@ -304,8 +304,8 @@ img {
 
   .header-tagline {
     margin-top: 10px;
-    font-size: 11px;
-    letter-spacing: 1px;
+    font-size: clamp(9px, 2.6vw, 11px);
+    letter-spacing: 0.5px;
     white-space: nowrap;
   }
 
