@@ -51,25 +51,20 @@ img {
   justify-content: flex-end;
 }
 
-/* Logos capped by HEIGHT so the banner stays compact
-   regardless of each image file's proportions */
+/* Logos capped by HEIGHT — images are cropped tight,
+   so these values map directly to visible artwork size */
 .vk-logo {
-  height: 92px;
+  height: 96px;
   width: auto;
 }
 
 .ritchies-logo {
-  /* Enlarged; negative margins crop the transparent canvas
-     baked into the PNG. Once the image file is cropped tight,
-     switch to height: 110px and margin: 0. */
-  height: 170px;
+  height: 84px;
   width: auto;
-  max-width: none; /* overrides global img max-width: 100% clamp */
-  margin: -30px 0 -34px 0;
 }
 
 .header-tagline {
-  margin: 0;
+  margin: 6px 0 0 0;
   font-size: 13px;
   color: #f6b800;
   letter-spacing: 1.5px;
@@ -77,7 +72,7 @@ img {
 }
 
 .combined-flags {
-  height: 52px;
+  height: 46px;
   width: auto;
 }
 
@@ -299,16 +294,15 @@ img {
   }
 
   .vk-logo {
-    height: 74px;
+    height: 72px;
   }
 
   .ritchies-logo {
-    height: 130px;
-    margin: -22px 0 -26px 0;
+    height: 64px;
   }
 
   .combined-flags {
-    height: 42px;
+    height: 36px;
     margin-top: 2px;
   }
 
