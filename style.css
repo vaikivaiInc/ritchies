@@ -1,3 +1,5 @@
+/* TEST: If you see this comment in DevTools, the correct CSS is loading */
+
 /* GLOBAL */
 body {
   margin: 0;
@@ -11,7 +13,7 @@ img {
   max-width: 100%;
 }
 
-/* HEADER — Condensed, stable, aligned */
+/* HEADER — Condensed */
 .header {
   background: #000;
   padding: 8px 0 0 0;
@@ -51,7 +53,7 @@ img {
   margin-left: auto;
 }
 
-/* NAV — tightened */
+/* NAV */
 .nav {
   display: flex;
   justify-content: center;
