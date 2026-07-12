@@ -15,10 +15,10 @@ img {
   max-width: 100%;
 }
 
-/* HEADER — contents condensed and pushed up */
+/* HEADER — FIXED (no overflow, no hero shift) */
 .header {
   background: #000;
-  padding-top: 4px;              /* minimal top padding */
+  padding-top: 6px;                 /* small top padding */
   border-bottom: 1px solid #222;
 }
 
@@ -29,7 +29,9 @@ img {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 0 16px;
-  height: 100px;                 /* shorter header */
+
+  /* REMOVE FIXED HEIGHT — THIS WAS THE PROBLEM */
+  /* height: 100px;  <-- DELETE THIS */
 }
 
 .header-left,
@@ -39,46 +41,34 @@ img {
   align-items: center;
 }
 
-.header-left {
-  justify-content: flex-start;
-}
-
 .header-center {
   flex-direction: column;
   justify-content: center;
 }
 
-.header-right {
-  justify-content: flex-end;
-}
-
 .vk-logo {
   width: 170px;
-  height: auto;
 }
 
 .ritchies-logo {
-  width: 230px;
-  height: auto;
+  width: 230px;                     /* natural height allowed */
 }
 
 .header-tagline {
-  margin-top: 2px;               /* tight spacing under logo */
+  margin-top: 4px;
   font-size: 13px;
   color: #ccc;
-  text-align: center;
 }
 
 .combined-flags {
   width: 115px;
-  height: auto;
 }
 
-/* NAV — tight under header */
+/* NAV — sits tight under header */
 .nav {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4px 0 8px 0;          /* reduced vertical space */
+  padding: 6px 0 10px 0;
   display: flex;
   justify-content: center;
   gap: 26px;
@@ -98,7 +88,7 @@ img {
   border-bottom: 2px solid red;
 }
 
-/* HERO (position unchanged) */
+/* HERO — UNCHANGED */
 .hero {
   position: relative;
   height: 450px;
@@ -119,7 +109,7 @@ img {
 
 .hero-content {
   position: absolute;
-  top: 30%;                      /* same general position */
+  top: 30%;
   left: 10%;
   max-width: 480px;
 }
@@ -281,15 +271,8 @@ img {
 @media (max-width: 768px) {
   .header-row {
     grid-template-columns: 1fr;
-    height: auto;
     row-gap: 6px;
     text-align: center;
-  }
-
-  .header-left,
-  .header-center,
-  .header-right {
-    justify-content: center;
   }
 
   .vk-logo {
@@ -302,7 +285,6 @@ img {
 
   .combined-flags {
     width: 105px;
-    margin-top: 4px;
   }
 
   .nav {
