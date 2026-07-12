@@ -37,32 +37,59 @@ img {
   margin: 0 auto;
 }
 
+/* HEADER — Condensed Concept V1 */
+.header {
+  background: #000;
+  padding: 10px 0 0 0; /* much tighter */
+  border-bottom: 1px solid #222;
+}
+
+.header-row {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center; /* aligns all three horizontally */
+  padding: 0 20px;
+  height: 140px; /* fixed height for perfect V1 proportions */
+}
+
+.vk-logo {
+  width: 210px; /* slightly smaller */
+  height: auto;
+}
+
+.ritchies-logo {
+  width: 280px; /* slightly smaller */
+  margin: 0 auto;
+}
+
 .header-tagline {
   text-align: center;
-  margin-top: 6px; /* closer to logo */
-  font-size: 15px;
+  margin-top: 4px; /* VERY tight spacing */
+  font-size: 14px;
   color: #ccc;
 }
 
 .combined-flags {
-  width: 150px;
+  width: 140px;
   height: auto;
   margin-left: auto;
 }
 
-/* NAV */
+/* NAV — tighter spacing */
 .nav {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  padding: 10px 0;
+  gap: 35px;
+  padding: 8px 0 12px 0; /* reduced height */
 }
 
 .nav-link {
   color: #fff;
   text-transform: uppercase;
-  font-size: 14px;
-  padding-bottom: 5px;
+  font-size: 13px;
+  padding-bottom: 4px;
   border-bottom: 2px solid transparent;
 }
 
@@ -70,6 +97,7 @@ img {
 .nav-link.active {
   border-bottom: 2px solid red;
 }
+
 
 /* HERO */
 .hero {
