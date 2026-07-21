@@ -145,8 +145,7 @@ body {
 .hero {
   position: relative;
   display: flex;
-  align-items: stretch;
-  min-height: 420px;
+  align-items: stretch;    /* image column stretches to exactly match the text column's height */
   overflow: hidden;
   background: #000;
 }
