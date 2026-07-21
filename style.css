@@ -219,13 +219,17 @@ body {
   border: 2px solid #fff;
 }
 
-/* Image — undimmed, fills the right half edge to edge, height matches the row */
+/* Image — undimmed, fills the right half edge to edge, height matches the row.
+   The <img> is taken out of flow (absolute) so its own intrinsic aspect ratio
+   can't dictate the row's height — only the text column does that. */
 .hero-image {
   position: relative;
   flex: 1 1 50%;
 }
 
 .hero-image img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -263,10 +267,7 @@ body {
 
   .hero-image {
     flex: none;
-  }
-
-  .hero-image img {
-    height: 260px;
+    height: 260px;   /* the <img> is absolute now, so the container needs the explicit height */
   }
 
   .hero-image::before {
