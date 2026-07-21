@@ -52,11 +52,11 @@ body {
   color: #e60000;
 }
 
-/* HERO SECTION — FIXED, NO COLOUR CHANGES */
+/* HERO SECTION */
 .hero {
   position: relative;
-  height: 65vh;
-  min-height: 420px;
+  height: 70vh;               /* Not full screen — keeps image subtle */
+  min-height: 480px;          /* Ensures good spacing on small screens */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,6 +64,7 @@ body {
   overflow: hidden;
 }
 
+/* Background Image */
 .hero-bg {
   position: absolute;
   top: 0;
@@ -71,32 +72,29 @@ body {
   width: 100%;
   height: 100%;
   background-image: url("images/hero-food.jpg");
-  background-size: cover;
+  background-size: cover;     /* Scales image properly */
   background-position: center;
   background-repeat: no-repeat;
-  filter: brightness(65%);
+  filter: brightness(55%);    /* Makes text readable */
+  transform: scale(1.1);      /* Slight zoom for a softer look */
 }
 
+/* Dark overlay for readability */
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.35); /* Soft dark overlay */
 }
 
+/* Text content */
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 800px;
   padding: 20px;
-}
-
-.hero-eyebrow,
-.hero-title,
-.hero-subtitle {
-  color: #fff;
 }
 
 .hero-title {
@@ -105,35 +103,29 @@ body {
 }
 
 .hero-title span {
-  color: #e60000;
+  color: #e60000; /* Red accent */
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
   margin-top: 10px;
+  opacity: 0.9;
 }
 
-/* BUTTONS */
-.hero-buttons {
-  margin-top: 25px;
-}
+/* Responsive scaling */
+@media (max-width: 768px) {
+  .hero {
+    height: 60vh;
+    min-height: 380px;
+  }
 
-.btn {
-  padding: 12px 25px;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  margin: 0 10px;
-}
+  .hero-title {
+    font-size: 2.2rem;
+  }
 
-.btn-red {
-  background: #e60000;
-  color: #fff;
-}
-
-.btn-light {
-  background: #fff;
-  color: #333;
+  .hero-subtitle {
+    font-size: 1rem;
+  }
 }
 
 /* ABOUT */
@@ -234,8 +226,8 @@ body {
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .hero {
-    height: 55vh;
-    min-height: 360px;
+    height: 60vh;
+    min-height: 380px;
   }
 
   .hero-title {
