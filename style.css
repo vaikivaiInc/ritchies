@@ -483,18 +483,18 @@ body {
   max-width: 1200px;
   margin: 0 auto 25px;
   padding: 18px 25px;
-  background: #e60000;
+  background: #fff;
   border-top: 4px solid #000;
-  border-bottom: 4px solid #fff;
+  border-bottom: 4px solid #e60000;
 }
 
 .social-flags {
   display: flex;
-  gap: 10px;
+  align-items: center;
 }
 
-.social-flags .flag-icon {
-  height: 30px;
+.footer-flag {
+  height: 34px;
   margin: 0;
 }
 

@@ -41,15 +41,15 @@
     <p class="section-subtitle">Tell us about your event — we&rsquo;ll bring the flavour.</p>
 
     <div class="contact-grid">
-      <form class="contact-form">
+      <form class="contact-form" action="mailto:ritchie.ramdass@vaikivai.ca" method="POST" enctype="text/plain">
         <label>Name</label>
-        <input type="text" class="form-input">
+        <input type="text" class="form-input" name="Name" required>
 
         <label>Email</label>
-        <input type="email" class="form-input">
+        <input type="email" class="form-input" name="Email" required>
 
         <label>Event Type</label>
-        <select class="form-input">
+        <select class="form-input" name="Event Type">
           <option>Corporate</option>
           <option>Wedding</option>
           <option>Family Gathering</option>
@@ -57,16 +57,16 @@
         </select>
 
         <label>Message</label>
-        <textarea class="form-textarea"></textarea>
+        <textarea class="form-textarea" name="Message" required></textarea>
 
         <button class="btn btn-red" type="submit">SEND MESSAGE</button>
       </form>
 
       <div class="contact-info">
         <p><strong>Ritchie&rsquo;s - A Vai-Ki-Vai Inc. Company</strong></p>
-        <p>6809 Steeles Ave W, Unit 5<br>Toronto, ON L4L 1S6</p>
-        <p>(289) 499-0460</p>
-        <p>ritchiesfoodshop@gmail.com</p>
+        <p>Pickering, ON</p>
+        <p>(416) 938-9465</p>
+        <p>ritchie.ramdass@vaikivai.ca</p>
         <p class="contact-flags">
           <img src="images/flag-trinidad.png" class="flag-icon" alt="Trinidad Flag">
           <img src="images/flag-canada.png" class="flag-icon" alt="Canada Flag">
@@ -79,8 +79,7 @@
   <footer class="footer">
     <div class="social-bar">
       <div class="social-flags">
-        <img src="images/flag-trinidad.png" class="flag-icon" alt="Trinidad Flag">
-        <img src="images/flag-canada.png" class="flag-icon" alt="Canada Flag">
+        <img src="images/combined-flags.png" class="footer-flag" alt="Trinidad + Canada Flags">
       </div>
 
       <div class="social-links">
