@@ -456,104 +456,7 @@ body {
   border-radius: 30px;
 }
 
-/* Mike and Ritchie's collaboration banner — full width, ~half the height of a normal tile.
-   The image slot is a 2x2 collage (logo + 3 dish photos) instead of one photo. */
-.brand-banner {
-  max-width: 1200px;
-  margin: 0 auto 30px;
-  display: flex;
-  align-items: stretch;
-  height: 130px;
-}
-
-.brand-banner-images {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  width: 260px;
-  height: 100%;
-  flex-shrink: 0;
-  gap: 2px;
-  background: #f6efe2;
-}
-
-.banner-cell {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.banner-logo {
-  object-fit: contain;
-  background: #fff;
-  padding: 6px;
-}
-
-.brand-banner .brand-card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 12px 24px;
-  gap: 4px;
-}
-
-.brand-collab-label {
-  margin: 0;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #e60000;
-  font-weight: bold;
-}
-
-.brand-title-inline {
-  margin: 0 0 4px;
-  font-size: 1.3rem;
-}
-
-.brand-banner .brand-link {
-  margin-top: 8px;
-  padding: 6px 16px;
-  font-size: 0.75rem;
-  align-self: flex-start;
-}
-
-/* Catering & Events — same footprint as Sauces / Seasonal Offerings, shaped as an oval */
-.brand-oval {
-  position: relative;
-  border-radius: 50%;
-}
-
-.brand-oval .brand-img {
-  height: 100%;
-  position: absolute;
-  inset: 0;
-}
-
-.brand-oval-overlay {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  min-height: 340px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  background: rgba(0,0,0,0.45);
-}
-
-.brand-oval-overlay .brand-title {
-  color: #fff;
-}
-
-.brand-oval-overlay .brand-link {
-  background: #e60000;   /* red pill reads better over the darkened photo than the default black */
-}
-
-/* BRANDS — responsive: 3 cols -> 2 -> 1, banner and oval stack accordingly */
+/* BRANDS — responsive: 3 cols -> 2 -> 1 */
 @media (max-width: 900px) {
   .brands-row-3 {
     grid-template-columns: repeat(2, 1fr);
@@ -568,24 +471,58 @@ body {
   .brands-heading {
     font-size: 1.5rem;
   }
+}
 
-  .brand-banner {
-    flex-direction: column;
-    height: auto;
-  }
+/* SOCIAL BAR — sits at the top of the footer on every page */
+.social-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto 25px;
+  padding: 18px 25px;
+  background: #e60000;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #fff;
+}
 
-  .brand-banner-images {
-    width: 100%;
-    height: 160px;
-  }
+.social-flags {
+  display: flex;
+  gap: 10px;
+}
 
-  .brand-oval {
-    border-radius: 16px;
-  }
+.social-flags .flag-icon {
+  height: 30px;
+  margin: 0;
+}
 
-  .brand-oval-overlay {
-    min-height: 260px;
-  }
+.social-links {
+  display: flex;
+  gap: 14px;
+}
+
+.social-link {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.social-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.45);
 }
 
 /* CONTACT */
