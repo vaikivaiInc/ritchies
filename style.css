@@ -398,12 +398,6 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.brands-row-2 {
-  position: relative;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-}
-
 .brand-card {
   display: block;
   background: #fff;
@@ -462,7 +456,8 @@ body {
   border-radius: 30px;
 }
 
-/* Mike & Ritchie's collaboration banner — full width, ~half the height of a normal tile */
+/* Mike and Ritchie's collaboration banner — full width, ~half the height of a normal tile.
+   The image slot is a 2x2 collage (logo + 3 dish photos) instead of one photo. */
 .brand-banner {
   max-width: 1200px;
   margin: 0 auto 30px;
@@ -471,10 +466,28 @@ body {
   height: 130px;
 }
 
-.brand-banner .brand-img {
-  width: 220px;
+.brand-banner-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  width: 260px;
   height: 100%;
   flex-shrink: 0;
+  gap: 2px;
+  background: #f6efe2;
+}
+
+.banner-cell {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.banner-logo {
+  object-fit: contain;
+  background: #fff;
+  padding: 6px;
 }
 
 .brand-banner .brand-card-body {
@@ -487,7 +500,7 @@ body {
 
 .brand-collab-label {
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #e60000;
@@ -495,51 +508,52 @@ body {
 }
 
 .brand-title-inline {
-  margin: 0 0 6px;
+  margin: 0 0 4px;
   font-size: 1.3rem;
 }
 
 .brand-banner .brand-link {
+  margin-top: 8px;
   padding: 6px 16px;
   font-size: 0.75rem;
   align-self: flex-start;
 }
 
-/* Catering & Events — circular badge sitting between Sauces and Seasonal Offerings */
-.brand-circle-wrap {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
+/* Catering & Events — same footprint as Sauces / Seasonal Offerings, shaped as an oval */
+.brand-oval {
+  position: relative;
+  border-radius: 50%;
 }
 
-.brand-circle {
+.brand-oval .brand-img {
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.brand-oval-overlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  min-height: 340px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: #e60000;
-  color: #fff;
   text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 0.95rem;
-  line-height: 1.3;
-  letter-spacing: 0.5px;
-  border: 5px solid #f6efe2;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease;
+  padding: 20px;
+  background: rgba(0,0,0,0.45);
 }
 
-.brand-circle:hover {
-  transform: translate(0, 0) scale(1.06);
+.brand-oval-overlay .brand-title {
+  color: #fff;
 }
 
-/* BRANDS — responsive: 3 cols -> 2 -> 1, banner stacks, circle drops out of overlay */
+.brand-oval-overlay .brand-link {
+  background: #e60000;   /* red pill reads better over the darkened photo than the default black */
+}
+
+/* BRANDS — responsive: 3 cols -> 2 -> 1, banner and oval stack accordingly */
 @media (max-width: 900px) {
   .brands-row-3 {
     grid-template-columns: repeat(2, 1fr);
@@ -547,8 +561,7 @@ body {
 }
 
 @media (max-width: 560px) {
-  .brands-row-3,
-  .brands-row-2 {
+  .brands-row-3 {
     grid-template-columns: 1fr;
   }
 
@@ -561,17 +574,17 @@ body {
     height: auto;
   }
 
-  .brand-banner .brand-img {
+  .brand-banner-images {
     width: 100%;
-    height: 120px;
+    height: 160px;
   }
 
-  .brand-circle-wrap {
-    position: static;
-    transform: none;
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
+  .brand-oval {
+    border-radius: 16px;
+  }
+
+  .brand-oval-overlay {
+    min-height: 260px;
   }
 }
 
