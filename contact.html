@@ -41,7 +41,9 @@
     <p class="section-subtitle">Tell us about your event — we&rsquo;ll bring the flavour.</p>
 
     <div class="contact-grid">
-      <form class="contact-form" action="mailto:ritchie.ramdass@vaikivai.ca" method="POST" enctype="text/plain">
+      <form class="contact-form" id="contact-form" action="mailto:ritchie.ramdass@vaikivai.ca" method="POST" enctype="text/plain">
+        <p id="cart-hint" class="cart-hint" style="display:none;">Your order summary has been added to the message below — add your name, email, and pickup/delivery details, then send.</p>
+
         <label>Name</label>
         <input type="text" class="form-input" name="Name" required>
 
@@ -57,7 +59,7 @@
         </select>
 
         <label>Message</label>
-        <textarea class="form-textarea" name="Message" required></textarea>
+        <textarea class="form-textarea" name="Message" id="message-field" required></textarea>
 
         <button class="btn btn-red" type="submit">SEND MESSAGE</button>
       </form>
@@ -94,6 +96,29 @@
     <p>&copy; 2023 Ritchie&rsquo;s Catering. All Rights Reserved.</p>
     <p>Proudly Trinidadian. Proudly Canadian.</p>
   </footer>
+
+  <script src="cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.RitchiesCart) return;
+
+      var cart = RitchiesCart.getCart();
+      var messageField = document.getElementById('message-field');
+      var hint = document.getElementById('cart-hint');
+
+      if (cart.length > 0 && messageField) {
+        messageField.value = RitchiesCart.buildOrderSummary();
+        if (hint) hint.style.display = 'block';
+      }
+
+      var form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function () {
+          RitchiesCart.clearCart();
+        });
+      }
+    });
+  </script>
 
 </body>
 </html>
