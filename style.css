@@ -212,13 +212,6 @@ body {
   opacity: 0.9;
 }
 
-.hero-buttons {
-  margin-top: 20px;
-  display: flex;
-  gap: 15px;
-  justify-content: flex-start;
-}
-
 .btn {
   border: none;
   border-radius: 30px;
@@ -232,12 +225,6 @@ body {
 .btn-red {
   background: #e60000;
   color: #fff;
-}
-
-.btn-light {
-  background: transparent;
-  color: #fff;
-  border: 2px solid #fff;
 }
 
 /* Image — undimmed, fills the right half edge to edge, height matches the row.
@@ -282,10 +269,6 @@ body {
     align-items: center;
   }
 
-  .hero-buttons {
-    justify-content: center;
-  }
-
   .hero-image {
     flex: none;
     height: 260px;   /* the <img> is absolute now, so the container needs the explicit height */
@@ -320,27 +303,6 @@ body {
   text-align: center;
   color: #777;
   margin-bottom: 40px;
-}
-
-.about-grid {
-  display: flex;
-  gap: 40px;
-}
-
-.about-text {
-  flex: 1;
-}
-
-.about-images {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-}
-
-.about-img {
-  width: 100%;
-  border-radius: 8px;
 }
 
 /* ABOUT — STORY PAGE (about.html) */
@@ -634,6 +596,8 @@ body {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
+  font-size: 16px; /* keeps iOS Safari from auto-zooming the page on focus */
+  font-family: inherit;
 }
 
 .form-textarea {
@@ -642,11 +606,6 @@ body {
 
 .contact-info {
   flex: 1;
-}
-
-.flag-icon {
-  height: 40px;
-  margin-right: 10px;
 }
 
 /* FOOTER */
@@ -658,23 +617,13 @@ body {
   border-top: 1px solid #222;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero {
-    height: 60vh;
-    min-height: 380px;
-  }
-
-  .hero-title {
-    font-size: 2.2rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-
-  .about-grid,
-  .brands-grid,
+/* RESPONSIVE — contact page grid stacks on mobile.
+   (Hero's own responsive rules live in the single @media (max-width: 900px)
+   block above — kept here separate since it's unrelated to hero sizing.)
+   Uses the same 700px tier as the header/nav breakpoint above, so the site
+   has one consistent set of breakpoints: 900 (tablet), 700 (large phone/
+   small tablet), 560 (phone), 480 (small phone). */
+@media (max-width: 700px) {
   .contact-grid {
     flex-direction: column;
   }

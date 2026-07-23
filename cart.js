@@ -22,6 +22,15 @@
     return '$' + n.toFixed(2);
   }
 
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function findItem(cart, name) {
     for (var i = 0; i < cart.length; i++) {
       if (cart[i].name === name) return cart[i];
@@ -95,10 +104,10 @@
     var html = '';
     cart.forEach(function (item) {
       html +=
-        '<div class="cart-line" data-name="' + item.name + '">' +
+        '<div class="cart-line" data-name="' + escapeHtml(item.name) + '">' +
           '<div class="cart-line-info">' +
-            '<span class="cart-line-name">' + item.name + '</span>' +
-            '<span class="cart-line-unit">' + formatPrice(item.price) + ' / ' + item.unit + '</span>' +
+            '<span class="cart-line-name">' + escapeHtml(item.name) + '</span>' +
+            '<span class="cart-line-unit">' + formatPrice(item.price) + ' / ' + escapeHtml(item.unit) + '</span>' +
           '</div>' +
           '<div class="cart-line-controls">' +
             '<button type="button" class="cart-qty-btn" data-action="minus">&minus;</button>' +

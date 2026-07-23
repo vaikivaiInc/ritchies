@@ -87,7 +87,7 @@
           <h3 class="brand-title">Ritchie&rsquo;s<br><span>Sweet Bread</span></h3>
           <p class="brand-badge">&#128293; Now Taking Orders</p>
           <p class="cd-caption">Next Batch Drops In:</p>
-          <div class="brand-countdown" data-countdown="2026-08-22T00:00:00">
+          <div class="brand-countdown" data-countdown="2026-08-22T00:00:00-04:00">
             <div class="cd-unit"><span class="cd-value" data-unit="days">00</span><span class="cd-label">Days</span></div>
             <span class="cd-sep">:</span>
             <div class="cd-unit"><span class="cd-value" data-unit="hours">00</span><span class="cd-label">Hrs</span></div>
@@ -177,36 +177,41 @@
 
   <script>
     (function () {
-      var el = document.querySelector('[data-countdown]');
-      if (!el) return;
-      var target = new Date(el.getAttribute('data-countdown')).getTime();
+      var els = document.querySelectorAll('[data-countdown]');
+      if (!els.length) return;
 
       function pad(n) {
         return String(n).padStart(2, '0');
       }
 
-      function update() {
-        var diff = target - Date.now();
+      function makeUpdater(el) {
+        var target = new Date(el.getAttribute('data-countdown')).getTime();
+        return function update() {
+          var diff = target - Date.now();
 
-        if (diff <= 0) {
-          el.innerHTML = '<span class="cd-done">Ordering Open!</span>';
-          return;
-        }
+          if (diff <= 0) {
+            el.innerHTML = '<span class="cd-done">Ordering Open!</span>';
+            return;
+          }
 
-        var days = Math.floor(diff / 86400000);
-        var hours = Math.floor((diff % 86400000) / 3600000);
-        var mins = Math.floor((diff % 3600000) / 60000);
+          var days = Math.floor(diff / 86400000);
+          var hours = Math.floor((diff % 86400000) / 3600000);
+          var mins = Math.floor((diff % 3600000) / 60000);
 
-        var daysEl = el.querySelector('[data-unit="days"]');
-        var hoursEl = el.querySelector('[data-unit="hours"]');
-        var minsEl = el.querySelector('[data-unit="minutes"]');
-        if (daysEl) daysEl.textContent = pad(days);
-        if (hoursEl) hoursEl.textContent = pad(hours);
-        if (minsEl) minsEl.textContent = pad(mins);
+          var daysEl = el.querySelector('[data-unit="days"]');
+          var hoursEl = el.querySelector('[data-unit="hours"]');
+          var minsEl = el.querySelector('[data-unit="minutes"]');
+          if (daysEl) daysEl.textContent = pad(days);
+          if (hoursEl) hoursEl.textContent = pad(hours);
+          if (minsEl) minsEl.textContent = pad(mins);
+        };
       }
 
-      update();
-      setInterval(update, 60000);
+      var updaters = Array.prototype.map.call(els, makeUpdater);
+      updaters.forEach(function (update) { update(); });
+      setInterval(function () {
+        updaters.forEach(function (update) { update(); });
+      }, 60000);
     })();
   </script>
 

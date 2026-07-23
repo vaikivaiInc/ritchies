@@ -47,7 +47,7 @@
     <p class="section-subtitle" id="contact-subtitle">Tell us about your event — we&rsquo;ll bring the flavour.</p>
 
     <div class="contact-grid">
-      <form class="contact-form" id="contact-form" action="mailto:ritchie.ramdass@vaikivai.ca" method="POST" enctype="text/plain">
+      <form class="contact-form" id="contact-form" action="mailto:ritchie.ramdass@vaikivai.ca" method="POST" enctype="text/plain" style="scroll-margin-top: 20px;">
         <p id="cart-hint" class="cart-hint" style="display:none;">Your order summary has been added to the message below. Add your name, email, and preferred pickup/delivery details, then hit send — we&rsquo;ll confirm availability, send you an invoice with a secure payment link, and follow up with next steps.</p>
 
         <label>Name</label>
@@ -120,7 +120,7 @@
       <span>Total</span>
       <span id="cart-total">$0.00</span>
     </div>
-    <a href="contact.html" id="cart-checkout" class="btn btn-red cart-checkout-btn">CHECKOUT</a>
+    <a href="#contact-form" id="cart-checkout" class="btn btn-red cart-checkout-btn">CHECKOUT</a>
     <p class="cart-note">Checkout sends your order summary to our Contact form — we&rsquo;ll follow up to confirm and take payment.</p>
   </div>
 
@@ -146,6 +146,15 @@
       if (form) {
         form.addEventListener('submit', function () {
           RitchiesCart.clearCart();
+        });
+      }
+
+      // We're already on the Contact page, so "Checkout" just jumps to the
+      // form instead of reloading this same page — close the drawer first.
+      var checkoutBtn = document.getElementById('cart-checkout');
+      if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', function () {
+          RitchiesCart.closeCart();
         });
       }
     });
