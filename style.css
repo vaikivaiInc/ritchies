@@ -75,15 +75,24 @@ body {
   text-align: center;
 }
 
-/* NAV */
+/* NAV — 3-column grid so the link group stays truly centered
+   regardless of the Cart button's width, which is pinned to the right */
 .nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: #000;
+  border-bottom: 3px solid #d1a13a; /* full-width gold divider before the hero */
+}
+
+.nav-links {
+  grid-column: 2;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  padding: 15px 20px;
-  background: #000;
-  border-bottom: 3px solid #d1a13a; /* full-width gold divider before the hero */
 }
 
 .nav-link {
@@ -99,6 +108,11 @@ body {
 .nav-link.active {
   color: #fff;
   border-bottom: 2px solid #e60000;
+}
+
+.nav-cart-btn {
+  grid-column: 3;
+  justify-self: end;
 }
 
 /* HEADER — MOBILE */
@@ -128,7 +142,19 @@ body {
   }
 
   .nav {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 12px;
+  }
+
+  .nav-links {
+    grid-column: 1;
     gap: 16px 20px;
+  }
+
+  .nav-cart-btn {
+    grid-column: 1;
+    justify-self: center;
   }
 
   .nav-link {
