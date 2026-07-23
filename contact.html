@@ -32,6 +32,10 @@
       <a href="index.html#home" class="nav-link">Home</a>
       <a href="about.html" class="nav-link">About Ritchie&rsquo;s</a>
       <a href="contact.html" class="nav-link active">Contact</a>
+      <button type="button" class="nav-cart-btn cart-toggle" aria-label="View cart">
+        <span class="cart-fab-icon">&#128722;</span> Cart
+        <span class="cart-count">0</span>
+      </button>
     </nav>
   </header>
 
@@ -98,6 +102,25 @@
     <p>&copy; 2023 Ritchie&rsquo;s Catering. All Rights Reserved.</p>
     <p>Proudly Trinidadian. Proudly Canadian.</p>
   </footer>
+
+  <!-- CART -->
+  <div id="cart-overlay" class="cart-overlay"></div>
+
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Your Order</h3>
+      <button id="cart-close" class="cart-close" aria-label="Close cart">&times;</button>
+    </div>
+    <div id="cart-items" class="cart-items">
+      <p class="cart-empty">Your cart is empty.</p>
+    </div>
+    <div class="cart-total-row">
+      <span>Total</span>
+      <span id="cart-total">$0.00</span>
+    </div>
+    <a href="contact.html" id="cart-checkout" class="btn btn-red cart-checkout-btn">CHECKOUT</a>
+    <p class="cart-note">Checkout sends your order summary to our Contact form — we&rsquo;ll follow up to confirm and take payment.</p>
+  </div>
 
   <script src="cart.js"></script>
   <script>
