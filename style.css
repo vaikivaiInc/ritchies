@@ -1074,6 +1074,42 @@ body {
   margin-bottom: 15px;
 }
 
+/* Inline contact-form confirmation / error states (no page navigation) */
+.form-success {
+  background: #0f1f14;
+  border: 1px solid #2e7d32;
+  border-radius: 8px;
+  padding: 25px;
+  flex: 1;
+}
+
+.form-success h3 {
+  margin: 0 0 8px;
+  color: #4caf50;
+  font-size: 1.3rem;
+}
+
+.form-success p {
+  margin: 0;
+  color: #cfe8d1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.form-error {
+  background: #1a1a1a;
+  border: 1px solid #e60000;
+  color: #f5b5b5;
+  font-size: 0.85rem;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.form-error a {
+  color: #fff;
+}
+
 @media (max-width: 480px) {
   .cart-drawer {
     width: 100vw;

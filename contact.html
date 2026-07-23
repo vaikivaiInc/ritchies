@@ -85,7 +85,13 @@
     <p class="section-subtitle" id="contact-subtitle">Tell us about your event — we&rsquo;ll bring the flavour.</p>
 
     <div class="contact-grid">
-      <form class="contact-form" id="contact-form" action="mailto:ritchie.ramdass@vaikivai.ca" method="POST" enctype="text/plain" style="scroll-margin-top: 20px;">
+      <form class="contact-form" id="contact-form" action="https://formsubmit.co/ritchie.ramdass@vaikivai.ca" method="POST" style="scroll-margin-top: 20px;">
+        <input type="hidden" name="_subject" value="New message from the Ritchie's website">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://vaikivai.ca/contact.html">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
         <p id="cart-hint" class="cart-hint" style="display:none;">Your order summary has been added to the message below. Add your name, email, and preferred pickup/delivery details, then hit send — we&rsquo;ll confirm availability, send you an invoice with a secure payment link, and follow up with next steps.</p>
 
         <label>Name</label>
@@ -107,8 +113,15 @@
 
         <button class="btn btn-red" type="submit" id="contact-submit-btn">SEND MESSAGE</button>
 
+        <p id="contact-error" class="form-error" style="display:none;">Something went wrong sending your message. Please try again, or email us directly at <a href="mailto:ritchie.ramdass@vaikivai.ca">ritchie.ramdass@vaikivai.ca</a>.</p>
+
         <p class="form-followup-note">We reply to every message within 1-2 business days. Orders are confirmed by email with an invoice and secure payment link before we start baking.</p>
       </form>
+
+      <div id="contact-success" class="form-success" style="display:none;">
+        <h3>Thank you!</h3>
+        <p id="contact-success-message">Your message has been received — we&rsquo;ll be in touch within 1-2 business days.</p>
+      </div>
 
       <div class="contact-info">
         <p><strong>Ritchie&rsquo;s - A Vai-Ki-Vai Inc. Company</strong></p>
@@ -139,7 +152,7 @@
       </div>
     </div>
 
-    <p>&copy; 2023 Ritchie&rsquo;s Catering. All Rights Reserved.</p>
+    <p>&copy; 2024 vaikivai. All Rights Reserved.</p>
     <p>Proudly Trinidadian. Proudly Canadian.</p>
   </footer>
 
@@ -168,23 +181,17 @@
       if (!window.RitchiesCart) return;
 
       var cart = RitchiesCart.getCart();
+      var hadOrder = cart.length > 0;
       var messageField = document.getElementById('message-field');
       var hint = document.getElementById('cart-hint');
       var subtitle = document.getElementById('contact-subtitle');
       var submitBtn = document.getElementById('contact-submit-btn');
 
-      if (cart.length > 0 && messageField) {
+      if (hadOrder && messageField) {
         messageField.value = RitchiesCart.buildOrderSummary();
         if (hint) hint.style.display = 'block';
         if (subtitle) subtitle.textContent = 'Review your order below, then send it our way — we’ll confirm and invoice you.';
         if (submitBtn) submitBtn.textContent = 'SEND ORDER REQUEST';
-      }
-
-      var form = document.getElementById('contact-form');
-      if (form) {
-        form.addEventListener('submit', function () {
-          RitchiesCart.clearCart();
-        });
       }
 
       // We're already on the Contact page, so "Checkout" just jumps to the
@@ -193,6 +200,49 @@
       if (checkoutBtn) {
         checkoutBtn.addEventListener('click', function () {
           RitchiesCart.closeCart();
+        });
+      }
+
+      // Submit directly in the background (no email app popup, no page
+      // reload) and show an inline confirmation instead of navigating away.
+      var form = document.getElementById('contact-form');
+      var successPanel = document.getElementById('contact-success');
+      var successMessage = document.getElementById('contact-success-message');
+      var errorPanel = document.getElementById('contact-error');
+
+      if (form) {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          if (errorPanel) errorPanel.style.display = 'none';
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'SENDING…';
+
+          var ajaxAction = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+          fetch(ajaxAction, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          })
+            .then(function (res) {
+              if (!res.ok) throw new Error('Request failed');
+              return res.json();
+            })
+            .then(function () {
+              RitchiesCart.clearCart();
+              form.style.display = 'none';
+              if (successMessage) {
+                successMessage.textContent = hadOrder
+                  ? 'Your order has been received — we’ll be in touch by email with next steps (confirmation, invoice, and payment link) within 1-2 business days.'
+                  : 'Your message has been received — we’ll be in touch within 1-2 business days.';
+              }
+              if (successPanel) successPanel.style.display = 'block';
+            })
+            .catch(function () {
+              submitBtn.disabled = false;
+              submitBtn.textContent = hadOrder ? 'SEND ORDER REQUEST' : 'SEND MESSAGE';
+              if (errorPanel) errorPanel.style.display = 'block';
+            });
         });
       }
     });

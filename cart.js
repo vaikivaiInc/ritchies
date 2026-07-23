@@ -160,7 +160,7 @@
     lines.push('');
     lines.push('Total: ' + formatPrice(cartTotal(cart)));
     lines.push('');
-    lines.push('(Please confirm pickup/delivery details below.)');
+    lines.push('Please confirm pickup/delivery details below:');
     return lines.join('\n');
   }
 
