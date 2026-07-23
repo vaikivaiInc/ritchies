@@ -1,0 +1,52 @@
+# Ritchie's (vaikivai.ca) — robots.txt
+# Everything on this site is public marketing/ordering content.
+# All search engines and AI crawlers are welcome to index and cite it.
+
+User-agent: *
+Allow: /
+
+# Common AI assistant / answer-engine crawlers — explicitly allowed
+# so Ritchie's can be discovered and cited by AI chatbots.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+Sitemap: https://vaikivai.ca/sitemap.xml
