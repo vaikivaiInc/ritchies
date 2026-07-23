@@ -38,11 +38,11 @@
   <!-- CONTACT -->
   <section id="contact" class="section">
     <h2 class="section-title">Contact Us</h2>
-    <p class="section-subtitle">Tell us about your event — we&rsquo;ll bring the flavour.</p>
+    <p class="section-subtitle" id="contact-subtitle">Tell us about your event — we&rsquo;ll bring the flavour.</p>
 
     <div class="contact-grid">
       <form class="contact-form" id="contact-form" action="mailto:ritchie.ramdass@vaikivai.ca" method="POST" enctype="text/plain">
-        <p id="cart-hint" class="cart-hint" style="display:none;">Your order summary has been added to the message below — add your name, email, and pickup/delivery details, then send.</p>
+        <p id="cart-hint" class="cart-hint" style="display:none;">Your order summary has been added to the message below. Add your name, email, and preferred pickup/delivery details, then hit send — we&rsquo;ll confirm availability, send you an invoice with a secure payment link, and follow up with next steps.</p>
 
         <label>Name</label>
         <input type="text" class="form-input" name="Name" required>
@@ -61,7 +61,9 @@
         <label>Message</label>
         <textarea class="form-textarea" name="Message" id="message-field" required></textarea>
 
-        <button class="btn btn-red" type="submit">SEND MESSAGE</button>
+        <button class="btn btn-red" type="submit" id="contact-submit-btn">SEND MESSAGE</button>
+
+        <p class="form-followup-note">We reply to every message within 1-2 business days. Orders are confirmed by email with an invoice and secure payment link before we start baking.</p>
       </form>
 
       <div class="contact-info">
@@ -105,10 +107,14 @@
       var cart = RitchiesCart.getCart();
       var messageField = document.getElementById('message-field');
       var hint = document.getElementById('cart-hint');
+      var subtitle = document.getElementById('contact-subtitle');
+      var submitBtn = document.getElementById('contact-submit-btn');
 
       if (cart.length > 0 && messageField) {
         messageField.value = RitchiesCart.buildOrderSummary();
         if (hint) hint.style.display = 'block';
+        if (subtitle) subtitle.textContent = 'Review your order below, then send it our way — we’ll confirm and invoice you.';
+        if (submitBtn) submitBtn.textContent = 'SEND ORDER REQUEST';
       }
 
       var form = document.getElementById('contact-form');

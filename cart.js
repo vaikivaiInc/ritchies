@@ -69,12 +69,14 @@
   }
 
   function renderCartBadge() {
-    var countEl = document.getElementById('cart-count');
-    if (!countEl) return;
+    var countEls = document.querySelectorAll('.cart-count');
+    if (!countEls.length) return;
     var cart = getCart();
     var count = cart.reduce(function (sum, i) { return sum + i.qty; }, 0);
-    countEl.textContent = count;
-    countEl.style.display = count > 0 ? 'flex' : 'none';
+    countEls.forEach(function (countEl) {
+      countEl.textContent = count;
+      countEl.style.display = count > 0 ? 'flex' : 'none';
+    });
   }
 
   function renderCartDrawer() {
@@ -173,11 +175,13 @@
     renderCartBadge();
     renderCartDrawer();
 
-    var toggle = document.getElementById('cart-toggle');
+    var toggles = document.querySelectorAll('.cart-toggle');
     var closeBtn = document.getElementById('cart-close');
     var overlay = document.getElementById('cart-overlay');
 
-    if (toggle) toggle.addEventListener('click', openCart);
+    toggles.forEach(function (toggle) {
+      toggle.addEventListener('click', openCart);
+    });
     if (closeBtn) closeBtn.addEventListener('click', closeCart);
     if (overlay) overlay.addEventListener('click', closeCart);
 
