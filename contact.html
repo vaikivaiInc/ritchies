@@ -85,11 +85,7 @@
     <p class="section-subtitle" id="contact-subtitle">Tell us about your event — we&rsquo;ll bring the flavour.</p>
 
     <div class="contact-grid">
-      <form class="contact-form" id="contact-form" action="https://formsubmit.co/ritchie.ramdass@vaikivai.ca" method="POST" style="scroll-margin-top: 20px;">
-        <input type="hidden" name="_subject" value="New message from the Ritchie's website">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://vaikivai.ca/contact.html">
+      <form class="contact-form" id="contact-form" action="https://script.google.com/macros/s/AKfycbz4ivJ5fnwD7FdWJuObNuY6VauR4CdlzBiszziN28Gz7bcbU-8wFdBA_KWrdfTC1etcVA/exec" method="POST" style="scroll-margin-top: 20px;">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
         <p id="cart-hint" class="cart-hint" style="display:none;">Your order summary has been added to the message below. Add your name, email, and preferred pickup/delivery details, then hit send — we&rsquo;ll confirm availability, send you an invoice with a secure payment link, and follow up with next steps.</p>
@@ -217,16 +213,24 @@
           submitBtn.disabled = true;
           submitBtn.textContent = 'SENDING…';
 
-          var ajaxAction = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+          // Build a plain object from the form and send it as a JSON string
+          // with no explicit Content-Type header — this keeps the request a
+          // CORS "simple request" (avoids a preflight OPTIONS call), which
+          // Google Apps Script Web Apps don't handle.
+          var payload = {};
+          new FormData(form).forEach(function (value, key) {
+            payload[key] = value;
+          });
 
-          fetch(ajaxAction, {
+          fetch(form.action, {
             method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
+            body: JSON.stringify(payload)
           })
-            .then(function (res) {
-              if (!res.ok) throw new Error('Request failed');
-              return res.json();
+            .then(function (res) { return res.json(); })
+            .then(function (result) {
+              if (!result || result.result !== 'success') {
+                throw new Error((result && result.message) || 'Request failed');
+              }
             })
             .then(function () {
               RitchiesCart.clearCart();
