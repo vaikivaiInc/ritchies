@@ -1,10 +1,14 @@
-/* Ritchie's — simple client-side cart (no backend).
-   Cart lives in localStorage so it persists across pages on the site.
-   Checkout hands the order summary to the existing Contact page /
-   mailto form rather than a live Square transaction. */
+/* Ritchie's — client-side cart + inline checkout (no backend server of our
+   own). Cart lives in localStorage so it persists across pages on the site.
+   Checkout happens right inside the cart drawer and submits directly to the
+   Google Apps Script order-collection endpoint — no email app, no separate
+   page to navigate to. */
 
 (function () {
   var CART_KEY = 'ritchiesCart';
+
+  // Same endpoint the Contact page's general-inquiry form submits to.
+  var ORDER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz4ivJ5fnwD7FdWJuObNuY6VauR4CdlzBiszziN28Gz7bcbU-8wFdBA_KWrdfTC1etcVA/exec';
 
   function getCart() {
     try {
@@ -50,6 +54,7 @@
     saveCart(cart);
     renderCartBadge();
     renderCartDrawer();
+    showCartView();
     openCart();
   }
 
@@ -136,6 +141,66 @@
     });
   }
 
+  // ---- Checkout order review (read-only) ----
+
+  function renderCheckoutSummary() {
+    var el = document.getElementById('checkout-order-summary');
+    if (!el) return;
+    var cart = getCart();
+    var html = '';
+    cart.forEach(function (item) {
+      html +=
+        '<div class="checkout-summary-line">' +
+          '<span>' + escapeHtml(item.name) + ' &times;' + item.qty + '</span>' +
+          '<span>' + formatPrice(item.price * item.qty) + '</span>' +
+        '</div>';
+    });
+    html +=
+      '<div class="checkout-summary-total">' +
+        '<span>Total</span><span>' + formatPrice(cartTotal(cart)) + '</span>' +
+      '</div>';
+    el.innerHTML = html;
+  }
+
+  function buildOrderSummary() {
+    var cart = getCart();
+    if (cart.length === 0) return '';
+    var lines = [];
+    cart.forEach(function (item) {
+      lines.push('- ' + item.name + ' x' + item.qty + ' (' + formatPrice(item.price) + ' / ' + item.unit + ') = ' + formatPrice(item.price * item.qty));
+    });
+    lines.push('');
+    lines.push('Total: ' + formatPrice(cartTotal(cart)));
+    return lines.join('\n');
+  }
+
+  // ---- Drawer view switching: cart / checkout form / success ----
+
+  function showCartView() {
+    setViews('cart', 'Your Order');
+  }
+
+  function showCheckoutView() {
+    if (getCart().length === 0) return; // nothing to check out
+    renderCheckoutSummary();
+    setViews('checkout', 'Checkout');
+  }
+
+  function showSuccessView() {
+    setViews('success', 'Order Placed');
+  }
+
+  function setViews(which, title) {
+    var cartView = document.getElementById('cart-view');
+    var checkoutView = document.getElementById('checkout-view');
+    var successView = document.getElementById('checkout-success-view');
+    var titleEl = document.getElementById('cart-drawer-title');
+    if (cartView) cartView.style.display = which === 'cart' ? 'block' : 'none';
+    if (checkoutView) checkoutView.style.display = which === 'checkout' ? 'block' : 'none';
+    if (successView) successView.style.display = which === 'success' ? 'block' : 'none';
+    if (titleEl) titleEl.textContent = title;
+  }
+
   function openCart() {
     var drawer = document.getElementById('cart-drawer');
     var overlay = document.getElementById('cart-overlay');
@@ -148,20 +213,8 @@
     var overlay = document.getElementById('cart-overlay');
     if (drawer) drawer.classList.remove('open');
     if (overlay) overlay.classList.remove('open');
-  }
-
-  function buildOrderSummary() {
-    var cart = getCart();
-    if (cart.length === 0) return '';
-    var lines = ['Order summary:', ''];
-    cart.forEach(function (item) {
-      lines.push('- ' + item.name + ' x' + item.qty + ' (' + formatPrice(item.price) + ' / ' + item.unit + ') = ' + formatPrice(item.price * item.qty));
-    });
-    lines.push('');
-    lines.push('Total: ' + formatPrice(cartTotal(cart)));
-    lines.push('');
-    lines.push('Please confirm pickup/delivery details below:');
-    return lines.join('\n');
+    // Reset to the default cart view for the next time the drawer opens.
+    showCartView();
   }
 
   // Expose what individual pages need to wire up buttons.
@@ -183,13 +236,17 @@
   document.addEventListener('DOMContentLoaded', function () {
     renderCartBadge();
     renderCartDrawer();
+    showCartView();
 
     var toggles = document.querySelectorAll('.cart-toggle');
     var closeBtn = document.getElementById('cart-close');
     var overlay = document.getElementById('cart-overlay');
 
     toggles.forEach(function (toggle) {
-      toggle.addEventListener('click', openCart);
+      toggle.addEventListener('click', function () {
+        showCartView();
+        openCart();
+      });
     });
     if (closeBtn) closeBtn.addEventListener('click', closeCart);
     if (overlay) overlay.addEventListener('click', closeCart);
@@ -221,5 +278,66 @@
         input.value = (parseInt(input.value, 10) || 1) + 1;
       });
     });
+
+    // ---- Inline checkout: cart -> checkout form -> success, all in the drawer ----
+
+    var checkoutBtn = document.getElementById('cart-checkout');
+    var checkoutBack = document.getElementById('checkout-back');
+    var checkoutForm = document.getElementById('checkout-form');
+    var checkoutSubmitBtn = document.getElementById('checkout-submit-btn');
+    var checkoutErrorEl = document.getElementById('checkout-error');
+
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', showCheckoutView);
+    }
+    if (checkoutBack) {
+      checkoutBack.addEventListener('click', showCartView);
+    }
+
+    if (checkoutForm) {
+      checkoutForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (getCart().length === 0) return;
+        if (checkoutErrorEl) checkoutErrorEl.style.display = 'none';
+
+        var payload = {};
+        new FormData(checkoutForm).forEach(function (value, key) {
+          payload[key] = value;
+        });
+        payload.OrderSummary = buildOrderSummary();
+        payload.Total = formatPrice(cartTotal(getCart()));
+
+        if (checkoutSubmitBtn) {
+          checkoutSubmitBtn.disabled = true;
+          checkoutSubmitBtn.textContent = 'PLACING ORDER…';
+        }
+
+        // No explicit Content-Type header — keeps this a CORS "simple
+        // request" (avoids a preflight OPTIONS call), which Google Apps
+        // Script Web Apps don't handle.
+        fetch(ORDER_ENDPOINT, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (result) {
+            if (!result || result.result !== 'success') {
+              throw new Error((result && result.message) || 'Request failed');
+            }
+            saveCart([]);
+            renderCartBadge();
+            renderCartDrawer();
+            checkoutForm.reset();
+            showSuccessView();
+          })
+          .catch(function () {
+            if (checkoutSubmitBtn) {
+              checkoutSubmitBtn.disabled = false;
+              checkoutSubmitBtn.textContent = 'PLACE ORDER';
+            }
+            if (checkoutErrorEl) checkoutErrorEl.style.display = 'block';
+          });
+      });
+    }
   });
 })();

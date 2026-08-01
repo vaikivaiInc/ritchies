@@ -133,18 +133,61 @@
 
   <div id="cart-drawer" class="cart-drawer">
     <div class="cart-drawer-header">
-      <h3>Your Order</h3>
+      <h3 id="cart-drawer-title">Your Order</h3>
       <button id="cart-close" class="cart-close" aria-label="Close cart">&times;</button>
     </div>
-    <div id="cart-items" class="cart-items">
-      <p class="cart-empty">Your cart is empty.</p>
+
+    <!-- CART VIEW -->
+    <div id="cart-view">
+      <div id="cart-items" class="cart-items">
+        <p class="cart-empty">Your cart is empty.</p>
+      </div>
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <button type="button" id="cart-checkout" class="btn btn-red cart-checkout-btn">CHECKOUT</button>
+      <p class="cart-note">We&rsquo;ll confirm your order by email with an invoice and payment link before we start baking.</p>
     </div>
-    <div class="cart-total-row">
-      <span>Total</span>
-      <span id="cart-total">$0.00</span>
+
+    <!-- CHECKOUT VIEW -->
+    <div id="checkout-view" style="display:none;">
+      <div id="checkout-order-summary" class="checkout-summary"></div>
+
+      <form id="checkout-form" class="checkout-form">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <label>Name</label>
+        <input type="text" class="form-input" name="Name" required>
+
+        <label>Email</label>
+        <input type="email" class="form-input" name="Email" required>
+
+        <label>Phone</label>
+        <input type="tel" class="form-input" name="Phone" required>
+
+        <label>Pickup or Delivery</label>
+        <div class="fulfillment-toggle">
+          <label><input type="radio" name="Fulfillment" value="Pickup" checked> Pickup</label>
+          <label><input type="radio" name="Fulfillment" value="Delivery"> Delivery</label>
+        </div>
+
+        <label>Notes <span class="checkout-optional">(optional)</span></label>
+        <textarea class="form-textarea" name="Notes" placeholder="Delivery address, preferred date, allergies, etc."></textarea>
+
+        <button type="submit" class="btn btn-red" id="checkout-submit-btn">PLACE ORDER</button>
+
+        <p id="checkout-error" class="form-error" style="display:none;">Something went wrong placing your order. Please try again, or email us directly at <a href="mailto:ritchie.ramdass@vaikivai.ca">ritchie.ramdass@vaikivai.ca</a>.</p>
+
+        <button type="button" id="checkout-back" class="checkout-back">&larr; Back to cart</button>
+      </form>
     </div>
-    <a href="contact.html" id="cart-checkout" class="btn btn-red cart-checkout-btn">CHECKOUT</a>
-    <p class="cart-note">Checkout sends your order summary to our Contact form — we&rsquo;ll follow up to confirm and take payment.</p>
+
+    <!-- SUCCESS VIEW -->
+    <div id="checkout-success-view" class="form-success" style="display:none;">
+      <h3>Order placed!</h3>
+      <p>Your order has been received — a member of our team will reach out to confirm payment and next steps.</p>
+    </div>
   </div>
 
   <script src="cart.js"></script>

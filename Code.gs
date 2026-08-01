@@ -1,11 +1,16 @@
 /**
  * Ritchie's — Order/Contact form backend (Google Apps Script)
  *
- * SETUP (see chat for full instructions):
- * 1. Create a Google Sheet, open Extensions > Apps Script, paste this file in.
- * 2. Deploy > New deployment > Web app > Execute as "Me", Who has access "Anyone".
- * 3. Copy the resulting /exec URL and send it back so it can be wired into
- *    contact.html in place of the current FormSubmit integration.
+ * Handles two kinds of submissions from the same endpoint:
+ *  - Checkout orders (from the cart drawer's inline checkout):
+ *    Name, Email, Phone, Fulfillment, Notes, OrderSummary, Total
+ *  - General inquiries (from the Contact page form):
+ *    Name, Email, 'Event Type', Message
+ * Distinguished by the presence of OrderSummary.
+ *
+ * To update the live deployment: paste this file into the project's
+ * Apps Script editor (Extensions > Apps Script from the Sheet) and save —
+ * an existing Web App deployment picks up saved changes automatically.
  */
 
 var NOTIFY_EMAIL = 'ritchie.ramdass@vaikivai.ca';
@@ -29,15 +34,23 @@ function doPost(e) {
       return jsonResponse({ result: 'success' });
     }
 
+    var isOrder = !!data.OrderSummary;
     var sheet = getSheet();
     var timestamp = new Date();
+
+    var details = isOrder
+      ? (data.OrderSummary || '') + (data.Notes ? '\n\nNotes: ' + data.Notes : '')
+      : (data.Message || '');
 
     sheet.appendRow([
       timestamp,
       data.Name || '',
       data.Email || '',
-      data['Event Type'] || '',
-      data.Message || '',
+      data.Phone || '',
+      isOrder ? 'Order' : 'Inquiry',
+      isOrder ? (data.Fulfillment || '') : (data['Event Type'] || ''),
+      details,
+      isOrder ? (data.Total || '') : '',
       'New'
     ]);
 
@@ -48,13 +61,13 @@ function doPost(e) {
     // Each notification is wrapped separately so one failing never blocks
     // the other.
     try {
-      notifyOwner(data, timestamp);
+      notifyOwner(data, timestamp, isOrder);
     } catch (notifyErr) {
       // Swallow — the submission is already safely logged in the sheet.
     }
 
     try {
-      notifyCustomer(data);
+      notifyCustomer(data, isOrder);
     } catch (customerErr) {
       // Swallow for the same reason — plus this call may intentionally
       // no-op (invalid email, daily cap reached), which isn't an error.
@@ -71,20 +84,34 @@ function getSheet() {
   var sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);
-    sheet.appendRow(['Timestamp', 'Name', 'Email', 'Event Type', 'Message', 'Status']);
+    sheet.appendRow(['Timestamp', 'Name', 'Email', 'Phone', 'Type', 'Fulfillment / Event Type', 'Details', 'Total', 'Status']);
   }
   return sheet;
 }
 
-function notifyOwner(data, timestamp) {
-  var subject = "New message from the Ritchie's website";
+function notifyOwner(data, timestamp, isOrder) {
+  var subject = isOrder
+    ? "New order from the Ritchie's website"
+    : "New message from the Ritchie's website";
+
   var body =
-    'New submission received at ' + timestamp.toLocaleString() + '\n\n' +
+    'New ' + (isOrder ? 'order' : 'message') + ' received at ' + timestamp.toLocaleString() + '\n\n' +
     'Name: ' + (data.Name || '') + '\n' +
     'Email: ' + (data.Email || '') + '\n' +
-    'Event Type: ' + (data['Event Type'] || '') + '\n\n' +
-    'Message:\n' + (data.Message || '') + '\n\n' +
-    '— Logged automatically to the Orders sheet.';
+    'Phone: ' + (data.Phone || '') + '\n';
+
+  if (isOrder) {
+    body +=
+      'Fulfillment: ' + (data.Fulfillment || '') + '\n\n' +
+      'Order:\n' + (data.OrderSummary || '') + '\n\n' +
+      (data.Notes ? 'Notes: ' + data.Notes + '\n\n' : '');
+  } else {
+    body +=
+      'Event Type: ' + (data['Event Type'] || '') + '\n\n' +
+      'Message:\n' + (data.Message || '') + '\n\n';
+  }
+
+  body += '— Logged automatically to the Orders sheet.';
 
   MailApp.sendEmail({
     to: NOTIFY_EMAIL,
@@ -94,20 +121,31 @@ function notifyOwner(data, timestamp) {
   });
 }
 
-function notifyCustomer(data) {
+function notifyCustomer(data, isOrder) {
   // Only send to something that at least looks like a real email address,
   // and only while under today's send cap. Both checks fail silently (no
   // throw) since skipping the confirmation is not an error condition.
   if (!isValidEmail(data.Email)) return;
   if (!consumeCustomerEmailQuota()) return;
 
-  var subject = "Your order has been received — Ritchie's";
-  var body =
-    'Hi ' + (data.Name || 'there') + ',\n\n' +
-    "Your order has been placed! A member of our team will reach out shortly to confirm payment and next steps.\n\n" +
-    "Here's a copy of what you sent us:\n\n" + (data.Message || '') + '\n\n' +
-    "— Ritchie's\n" +
-    'ritchie.ramdass@vaikivai.ca | (416) 938-9465';
+  var subject = isOrder
+    ? "Your order has been received — Ritchie's"
+    : "We've received your message — Ritchie's";
+
+  var body = 'Hi ' + (data.Name || 'there') + ',\n\n';
+
+  if (isOrder) {
+    body +=
+      "Your order has been placed! A member of our team will reach out shortly to confirm payment and next steps.\n\n" +
+      "Here's a copy of your order:\n\n" + (data.OrderSummary || '') + '\n\n' +
+      (data.Fulfillment ? 'Fulfillment: ' + data.Fulfillment + '\n\n' : '');
+  } else {
+    body +=
+      "Thanks for reaching out to Ritchie's! We've received your message and will be in touch by email with next steps within 1-2 business days.\n\n" +
+      "Here's a copy of what you sent us:\n\n" + (data.Message || '') + '\n\n';
+  }
+
+  body += "— Ritchie's\nritchie.ramdass@vaikivai.ca | (416) 938-9465";
 
   MailApp.sendEmail({
     to: data.Email,

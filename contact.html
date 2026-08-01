@@ -88,8 +88,6 @@
       <form class="contact-form" id="contact-form" action="https://script.google.com/macros/s/AKfycbz4ivJ5fnwD7FdWJuObNuY6VauR4CdlzBiszziN28Gz7bcbU-8wFdBA_KWrdfTC1etcVA/exec" method="POST" style="scroll-margin-top: 20px;">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
-        <p id="cart-hint" class="cart-hint" style="display:none;">Your order summary has been added to the message below. Add your name, email, and preferred pickup/delivery details, then hit send — we&rsquo;ll confirm availability, send you an invoice with a secure payment link, and follow up with next steps.</p>
-
         <label>Name</label>
         <input type="text" class="form-input" name="Name" required>
 
@@ -157,98 +155,110 @@
 
   <div id="cart-drawer" class="cart-drawer">
     <div class="cart-drawer-header">
-      <h3>Your Order</h3>
+      <h3 id="cart-drawer-title">Your Order</h3>
       <button id="cart-close" class="cart-close" aria-label="Close cart">&times;</button>
     </div>
-    <div id="cart-items" class="cart-items">
-      <p class="cart-empty">Your cart is empty.</p>
+
+    <!-- CART VIEW -->
+    <div id="cart-view">
+      <div id="cart-items" class="cart-items">
+        <p class="cart-empty">Your cart is empty.</p>
+      </div>
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <button type="button" id="cart-checkout" class="btn btn-red cart-checkout-btn">CHECKOUT</button>
+      <p class="cart-note">We&rsquo;ll confirm your order by email with an invoice and payment link before we start baking.</p>
     </div>
-    <div class="cart-total-row">
-      <span>Total</span>
-      <span id="cart-total">$0.00</span>
+
+    <!-- CHECKOUT VIEW -->
+    <div id="checkout-view" style="display:none;">
+      <div id="checkout-order-summary" class="checkout-summary"></div>
+
+      <form id="checkout-form" class="checkout-form">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <label>Name</label>
+        <input type="text" class="form-input" name="Name" required>
+
+        <label>Email</label>
+        <input type="email" class="form-input" name="Email" required>
+
+        <label>Phone</label>
+        <input type="tel" class="form-input" name="Phone" required>
+
+        <label>Pickup or Delivery</label>
+        <div class="fulfillment-toggle">
+          <label><input type="radio" name="Fulfillment" value="Pickup" checked> Pickup</label>
+          <label><input type="radio" name="Fulfillment" value="Delivery"> Delivery</label>
+        </div>
+
+        <label>Notes <span class="checkout-optional">(optional)</span></label>
+        <textarea class="form-textarea" name="Notes" placeholder="Delivery address, preferred date, allergies, etc."></textarea>
+
+        <button type="submit" class="btn btn-red" id="checkout-submit-btn">PLACE ORDER</button>
+
+        <p id="checkout-error" class="form-error" style="display:none;">Something went wrong placing your order. Please try again, or email us directly at <a href="mailto:ritchie.ramdass@vaikivai.ca">ritchie.ramdass@vaikivai.ca</a>.</p>
+
+        <button type="button" id="checkout-back" class="checkout-back">&larr; Back to cart</button>
+      </form>
     </div>
-    <a href="#contact-form" id="cart-checkout" class="btn btn-red cart-checkout-btn">CHECKOUT</a>
-    <p class="cart-note">Checkout sends your order summary to our Contact form — we&rsquo;ll follow up to confirm and take payment.</p>
+
+    <!-- SUCCESS VIEW -->
+    <div id="checkout-success-view" class="form-success" style="display:none;">
+      <h3>Order placed!</h3>
+      <p>Your order has been received — a member of our team will reach out to confirm payment and next steps.</p>
+    </div>
   </div>
 
   <script src="cart.js"></script>
   <script>
+    // General inquiries only — cart checkout now happens entirely inline in
+    // the cart drawer (see cart.js), so this form no longer needs to know
+    // anything about the cart.
     document.addEventListener('DOMContentLoaded', function () {
-      if (!window.RitchiesCart) return;
-
-      var cart = RitchiesCart.getCart();
-      var hadOrder = cart.length > 0;
-      var messageField = document.getElementById('message-field');
-      var hint = document.getElementById('cart-hint');
-      var subtitle = document.getElementById('contact-subtitle');
-      var submitBtn = document.getElementById('contact-submit-btn');
-
-      if (hadOrder && messageField) {
-        messageField.value = RitchiesCart.buildOrderSummary();
-        if (hint) hint.style.display = 'block';
-        if (subtitle) subtitle.textContent = 'Review your order below, then send it our way — we’ll confirm and invoice you.';
-        if (submitBtn) submitBtn.textContent = 'SEND ORDER REQUEST';
-      }
-
-      // We're already on the Contact page, so "Checkout" just jumps to the
-      // form instead of reloading this same page — close the drawer first.
-      var checkoutBtn = document.getElementById('cart-checkout');
-      if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function () {
-          RitchiesCart.closeCart();
-        });
-      }
-
-      // Submit directly in the background (no email app popup, no page
-      // reload) and show an inline confirmation instead of navigating away.
       var form = document.getElementById('contact-form');
+      var submitBtn = document.getElementById('contact-submit-btn');
       var successPanel = document.getElementById('contact-success');
-      var successMessage = document.getElementById('contact-success-message');
       var errorPanel = document.getElementById('contact-error');
+      if (!form) return;
 
-      if (form) {
-        form.addEventListener('submit', function (event) {
-          event.preventDefault();
-          if (errorPanel) errorPanel.style.display = 'none';
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'SENDING…';
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (errorPanel) errorPanel.style.display = 'none';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'SENDING…';
 
-          // Build a plain object from the form and send it as a JSON string
-          // with no explicit Content-Type header — this keeps the request a
-          // CORS "simple request" (avoids a preflight OPTIONS call), which
-          // Google Apps Script Web Apps don't handle.
-          var payload = {};
-          new FormData(form).forEach(function (value, key) {
-            payload[key] = value;
-          });
-
-          fetch(form.action, {
-            method: 'POST',
-            body: JSON.stringify(payload)
-          })
-            .then(function (res) { return res.json(); })
-            .then(function (result) {
-              if (!result || result.result !== 'success') {
-                throw new Error((result && result.message) || 'Request failed');
-              }
-            })
-            .then(function () {
-              RitchiesCart.clearCart();
-              form.style.display = 'none';
-              if (successMessage) {
-                successMessage.textContent = hadOrder
-                  ? 'Your order has been received — we’ll be in touch by email with next steps (confirmation, invoice, and payment link) within 1-2 business days.'
-                  : 'Your message has been received — we’ll be in touch within 1-2 business days.';
-              }
-              if (successPanel) successPanel.style.display = 'block';
-            })
-            .catch(function () {
-              submitBtn.disabled = false;
-              submitBtn.textContent = hadOrder ? 'SEND ORDER REQUEST' : 'SEND MESSAGE';
-              if (errorPanel) errorPanel.style.display = 'block';
-            });
+        // Build a plain object from the form and send it as a JSON string
+        // with no explicit Content-Type header — this keeps the request a
+        // CORS "simple request" (avoids a preflight OPTIONS call), which
+        // Google Apps Script Web Apps don't handle.
+        var payload = {};
+        new FormData(form).forEach(function (value, key) {
+          payload[key] = value;
         });
-      }
+
+        fetch(form.action, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (result) {
+            if (!result || result.result !== 'success') {
+              throw new Error((result && result.message) || 'Request failed');
+            }
+          })
+          .then(function () {
+            form.style.display = 'none';
+            if (successPanel) successPanel.style.display = 'block';
+          })
+          .catch(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'SEND MESSAGE';
+            if (errorPanel) errorPanel.style.display = 'block';
+          });
+      });
     });
   </script>
 
