@@ -381,6 +381,10 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.brands-row-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .brand-card {
   display: block;
   background: #fff;
@@ -426,77 +430,6 @@ body {
   margin: 0 0 18px;
 }
 
-.brand-badge {
-  display: inline-block;
-  margin: 0 0 10px;
-  background: #e60000;
-  color: #fff;
-  font-weight: bold;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 5px 12px;
-  border-radius: 20px;
-}
-
-.cd-caption {
-  margin: 0 0 8px;
-  color: #555;
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.brand-countdown {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 16px;
-}
-
-.cd-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #f6efe2;
-  border: 1px solid #e6dcc8;
-  border-radius: 6px;
-  padding: 5px 10px;
-  min-width: 44px;
-}
-
-.cd-value {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #1a1a1a;
-  line-height: 1;
-}
-
-.cd-label {
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #777;
-  margin-top: 2px;
-}
-
-.cd-sep {
-  font-weight: bold;
-  color: #e60000;
-}
-
-.cd-done {
-  display: inline-block;
-  background: #e60000;
-  color: #fff;
-  font-weight: bold;
-  font-size: 0.8rem;
-  letter-spacing: 0.5px;
-  padding: 6px 14px;
-  border-radius: 20px;
-}
-
 .brand-link {
   display: inline-flex;
   align-items: center;
@@ -512,13 +445,15 @@ body {
 
 /* BRANDS — responsive: 3 cols -> 2 -> 1 */
 @media (max-width: 900px) {
-  .brands-row-3 {
+  .brands-row-3,
+  .brands-row-4 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 560px) {
-  .brands-row-3 {
+  .brands-row-3,
+  .brands-row-4 {
     grid-template-columns: 1fr;
   }
 

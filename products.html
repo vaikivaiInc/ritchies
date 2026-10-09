@@ -69,8 +69,14 @@
       },
       {
         "@type": "MenuSection",
-        "name": "Seasonal Offerings",
-        "description": "Pastelles and black cake — seasonal holiday favourites, made fresh each season."
+        "name": "Christmas Offerings",
+        "description": "Christmas orders now open.",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "Pastelles (Chicken)", "description": "Per dozen", "offers": { "@type": "Offer", "price": "45.00", "priceCurrency": "CAD" } },
+          { "@type": "MenuItem", "name": "Pastelles (Beef)", "description": "Per dozen", "offers": { "@type": "Offer", "price": "45.00", "priceCurrency": "CAD" } },
+          { "@type": "MenuItem", "name": "Pastelles (Veggie - Soya)", "description": "Per dozen", "offers": { "@type": "Offer", "price": "45.00", "priceCurrency": "CAD" } },
+          { "@type": "MenuItem", "name": "Black Cake", "offers": { "@type": "Offer", "price": "35.00", "priceCurrency": "CAD" } }
+        ]
       }
     ]
   }
@@ -248,7 +254,6 @@
       <div class="product-item" data-product-name="Pepper Sauce" data-product-price="12" data-product-unit="bottle">
         <h4 class="product-name">Pepper Sauce</h4>
         <p class="product-desc">Bold, vibrant heat crafted in small batches with authentic Trinbago ingredients. Perfectly balanced for flavor and fire, this sauce delivers a clean, satisfying kick for heat lovers who want quality in every drop.</p>
-        <p class="product-note">Next Delivery Date: August 29th, 2026 — now taking orders.</p>
         <div class="product-footer">
           <span class="product-price">$12 / bottle</span>
           <div class="qty-stepper">
@@ -263,7 +268,6 @@
       <div class="product-item" data-product-name="Tamarind Sauce" data-product-price="12" data-product-unit="bottle">
         <h4 class="product-name">Tamarind Sauce</h4>
         <p class="product-desc">Sweet, tangy, and full of real Trinbago tamarind flavor. Small-batch and authentically crafted, this sauce brings bright island depth to doubles, pholourie, wings, and anything that needs that perfect sweet-sour kick.</p>
-        <p class="product-note">Next Delivery Date: August 29th, 2026 — now taking orders.</p>
         <div class="product-footer">
           <span class="product-price">$12 / bottle</span>
           <div class="qty-stepper">
@@ -278,7 +282,6 @@
       <div class="product-item" data-product-name="Trinbago BBQ Sauce" data-product-price="15" data-product-unit="bottle">
         <h4 class="product-name">Trinbago BBQ Sauce</h4>
         <p class="product-desc">Rich, smoky, and lightly sweet with true Trinbago seasoning. Made in small batches for bold, balanced flavor, this BBQ sauce elevates grilled meats, sandwiches, and everyday dishes with warm island character.</p>
-        <p class="product-note">Next Delivery Date: August 29th, 2026 — now taking orders.</p>
         <div class="product-footer">
           <span class="product-price">$15 / bottle</span>
           <div class="qty-stepper">
@@ -305,7 +308,6 @@
       <div class="product-item" data-product-name="Sweet Bread" data-product-price="12" data-product-unit="loaf">
         <h4 class="product-name">Sweet Bread</h4>
         <p class="product-desc">Soft, moist, and rich with grated coconut, warm spices, raisins, and cherries. A true Trinbago classic — the Trini sweetbread you grew up with, straight from an authentic Caribbean kitchen.</p>
-        <p class="product-note">Next Delivery Date: August 29th, 2026 — now taking orders.</p>
         <div class="product-footer">
           <span class="product-price">$12 / loaf</span>
           <div class="qty-stepper">
@@ -402,27 +404,68 @@
 
   <!-- SEASONAL OFFERINGS -->
   <section id="seasonal" class="section product-section">
+    <span id="pastelles"></span><span id="black-cake"></span>
     <div class="product-banner" style="background-image: url('images/Christmas.jpg');">
       <div class="product-banner-overlay">
-        <h2>Seasonal Offerings</h2>
-        <p>Pastelles, black cake, and limited-time flavours for every season.</p>
+        <h2>Christmas Orders Now Open</h2>
+        <p>Pastelles and black cake &mdash; order now for the holidays.</p>
       </div>
     </div>
 
     <div class="product-list">
-      <div class="product-item">
-        <h4 class="product-name">Pastelles</h4>
-        <p class="product-desc">A holiday tradition — seasoned meat filling wrapped in cornmeal dough and banana leaf. A seasonal favourite, available around the holidays.</p>
+      <div class="product-item" data-product-name="Pastelles (Chicken)" data-product-price="45" data-product-unit="dozen">
+        <h4 class="product-name">Pastelles (Chicken)</h4>
+        <p class="product-desc">A Trinbago Christmas tradition &mdash; seasoned filling wrapped in cornmeal dough and banana leaf. Now taking Christmas orders.</p>
         <div class="product-footer">
-          <a href="contact.html" class="brand-link">ASK ABOUT AVAILABILITY <i>&rsaquo;</i></a>
+          <span class="product-price">$45 / dozen</span>
+          <div class="qty-stepper">
+            <button type="button" class="qty-btn qty-minus" aria-label="Decrease quantity">&minus;</button>
+            <input type="number" class="qty-input" value="1" min="1" max="99">
+            <button type="button" class="qty-btn qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <button type="button" class="brand-link add-to-cart-btn">ADD TO CART</button>
         </div>
       </div>
 
-      <div class="product-item">
-        <h4 class="product-name">Black Cake</h4>
-        <p class="product-desc">Rich, rum-soaked fruit cake made the traditional Trinbago way — a holiday favourite, made fresh each season.</p>
+      <div class="product-item" data-product-name="Pastelles (Beef)" data-product-price="45" data-product-unit="dozen">
+        <h4 class="product-name">Pastelles (Beef)</h4>
+        <p class="product-desc">A Trinbago Christmas tradition &mdash; seasoned filling wrapped in cornmeal dough and banana leaf. Now taking Christmas orders.</p>
         <div class="product-footer">
-          <a href="contact.html" class="brand-link">ASK ABOUT AVAILABILITY <i>&rsaquo;</i></a>
+          <span class="product-price">$45 / dozen</span>
+          <div class="qty-stepper">
+            <button type="button" class="qty-btn qty-minus" aria-label="Decrease quantity">&minus;</button>
+            <input type="number" class="qty-input" value="1" min="1" max="99">
+            <button type="button" class="qty-btn qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <button type="button" class="brand-link add-to-cart-btn">ADD TO CART</button>
+        </div>
+      </div>
+
+      <div class="product-item" data-product-name="Pastelles (Veggie - Soya)" data-product-price="45" data-product-unit="dozen">
+        <h4 class="product-name">Pastelles (Veggie - Soya)</h4>
+        <p class="product-desc">A Trinbago Christmas tradition &mdash; seasoned filling wrapped in cornmeal dough and banana leaf. Now taking Christmas orders.</p>
+        <div class="product-footer">
+          <span class="product-price">$45 / dozen</span>
+          <div class="qty-stepper">
+            <button type="button" class="qty-btn qty-minus" aria-label="Decrease quantity">&minus;</button>
+            <input type="number" class="qty-input" value="1" min="1" max="99">
+            <button type="button" class="qty-btn qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <button type="button" class="brand-link add-to-cart-btn">ADD TO CART</button>
+        </div>
+      </div>
+
+      <div class="product-item" data-product-name="Black Cake" data-product-price="35" data-product-unit="cake">
+        <h4 class="product-name">Black Cake</h4>
+        <p class="product-desc">Rich, rum-soaked fruit cake made the traditional Trinbago way. Now taking Christmas orders.</p>
+        <div class="product-footer">
+          <span class="product-price">$35 / cake</span>
+          <div class="qty-stepper">
+            <button type="button" class="qty-btn qty-minus" aria-label="Decrease quantity">&minus;</button>
+            <input type="number" class="qty-input" value="1" min="1" max="99">
+            <button type="button" class="qty-btn qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <button type="button" class="brand-link add-to-cart-btn">ADD TO CART</button>
         </div>
       </div>
     </div>
