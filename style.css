@@ -58,11 +58,20 @@ body {
   justify-self: end;
 }
 
-.vk-logo,
-.ritchies-logo,
 .combined-flags {
   height: 70px;
   max-width: 100%;
+}
+
+/* The logo has black and dark-brown artwork (palm, waves, outline, text),
+   which disappears on the black header — so it sits on a white rounded
+   badge. */
+.ritchies-logo {
+  height: 130px;
+  width: auto;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 14px;
 }
 
 .header-tagline {
@@ -128,9 +137,8 @@ body {
     justify-self: center;
   }
 
-  .vk-logo,
   .ritchies-logo {
-    height: 50px;
+    height: 100px;
   }
 
   .combined-flags {
@@ -1174,4 +1182,26 @@ body {
   .product-banner-overlay h2 {
     font-size: 1.3rem;
   }
+}
+
+
+/* RECIPES placeholder */
+.recipes-placeholder {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 20px;
+  border: 2px dashed #e0a03c;
+  border-radius: 10px;
+}
+
+.recipes-placeholder h2 {
+  color: #e0a03c;
+  margin-top: 0;
+}
+
+.recipes-placeholder .btn {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
 }

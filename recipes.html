@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trini Recipes — Pastelles, Black Cake &amp; More | Ritchie's</title>
+  <meta name="description" content="Authentic Trini and Caribbean recipes from Ritchie's in Pickering, Ontario — pastelles, black cake, sweet bread and more. Coming soon.">
+  <meta name="keywords" content="Trini recipes, Trinidad recipes, pastelles recipe, black cake recipe, Trini sweet bread recipe, Caribbean recipes">
+  <link rel="canonical" href="https://vaikivai.ca/recipes.html">
+  <link rel="icon" type="image/png" href="images/vaikivai-logo.png">
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ritchie's">
+  <meta property="og:title" content="Trini Recipes — Ritchie's">
+  <meta property="og:description" content="Get in touch for catering quotes, custom orders, and event inquiries — Pickering, Ontario.">
+  <meta property="og:image" content="https://vaikivai.ca/images/hero-food.jpg">
+  <meta property="og:url" content="https://vaikivai.ca/recipes.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Trini Recipes — Ritchie's">
+  <meta name="twitter:description" content="Get in touch for catering quotes, custom orders, and event inquiries — Pickering, Ontario.">
+  <meta name="twitter:image" content="https://vaikivai.ca/images/hero-food.jpg">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-row">
+
+      <div class="header-left"></div>
+
+      <div class="header-center">
+        <img src="images/Ritchies-logo.png" class="ritchies-logo" alt="Ritchie's Logo">
+        <p class="header-tagline">Born in Trinidad & Tobago. Created in Canada.</p>
+      </div>
+
+      <div class="header-right">
+        <img src="images/combined-flags.png" class="combined-flags" alt="Trinidad + Canada Flags">
+      </div>
+
+    </div>
+
+    <nav class="nav">
+      <div class="nav-links">
+        <a href="index.html#home" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About Ritchie&rsquo;s</a>
+        <a href="recipes.html" class="nav-link active">Recipes</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <button type="button" class="nav-cart-btn cart-toggle" aria-label="View cart">
+        <span class="cart-fab-icon">&#128722;</span> Cart
+        <span class="cart-count">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- RECIPES -->
+  <section id="recipes" class="section">
+    <h1 class="section-title">Recipes</h1>
+    <p class="section-subtitle">Trini and Caribbean recipes from Ritchie&rsquo;s kitchen &mdash; coming soon.</p>
+
+    <div class="recipes-placeholder">
+      <h2>Recipes are on the way!</h2>
+      <p>You asked, so we&rsquo;re writing them down. Look out for family favourites like pastelles, black cake and sweet bread.</p>
+      <p>Follow us on <a href="https://www.instagram.com/vai_ki_vai" target="_blank" rel="noopener">Instagram</a>, <a href="https://www.tiktok.com/@d_trini_dad" target="_blank" rel="noopener">TikTok</a> or <a href="https://www.facebook.com/share/18oFwrXCiM/" target="_blank" rel="noopener">Facebook</a> to hear when the first one drops, or tell us what you&rsquo;d like to see first.</p>
+      <a href="contact.html" class="btn btn-red">REQUEST A RECIPE</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="social-bar">
+      <div class="social-flags">
+        <img src="images/combined-flags.png" class="footer-flag" alt="Trinidad + Canada Flags">
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.instagram.com/vai_ki_vai" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+          <img src="images/instagram.jpg" alt="Instagram">
+        </a>
+        <a href="https://www.tiktok.com/@d_trini_dad" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">
+          <img src="images/tiktok.jpg" alt="TikTok">
+        </a>
+        <a href="https://www.facebook.com/share/18oFwrXCiM/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+          <img src="images/FB.jpg" alt="Facebook">
+        </a>
+      </div>
+    </div>
+
+    <p>&copy; 2024 Vai-Ki-Vai Inc. All Rights Reserved.</p>
+    <p>Proudly Trinidadian. Proudly Canadian.</p>
+  </footer>
+
+  <!-- CART -->
+  <div id="cart-overlay" class="cart-overlay"></div>
+
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3 id="cart-drawer-title">Your Order</h3>
+      <button id="cart-close" class="cart-close" aria-label="Close cart">&times;</button>
+    </div>
+
+    <!-- CART VIEW -->
+    <div id="cart-view">
+      <div id="cart-items" class="cart-items">
+        <p class="cart-empty">Your cart is empty.</p>
+      </div>
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <button type="button" id="cart-checkout" class="btn btn-red cart-checkout-btn">CHECKOUT</button>
+      <p class="cart-note">We&rsquo;ll confirm your order by email with an invoice and payment link before we start baking.</p>
+    </div>
+
+    <!-- CHECKOUT VIEW -->
+    <div id="checkout-view" style="display:none;">
+      <div id="checkout-order-summary" class="checkout-summary"></div>
+
+      <form id="checkout-form" class="checkout-form">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <label>Name</label>
+        <input type="text" class="form-input" name="Name" required>
+
+        <label>Email</label>
+        <input type="email" class="form-input" name="Email" required>
+
+        <label>Phone</label>
+        <input type="tel" class="form-input" name="Phone" required>
+
+        <label>Pickup or Delivery</label>
+        <div class="fulfillment-toggle">
+          <label><input type="radio" name="Fulfillment" value="Pickup" checked> Pickup</label>
+          <label><input type="radio" name="Fulfillment" value="Delivery"> Delivery</label>
+        </div>
+
+        <label>Notes <span class="checkout-optional">(optional)</span></label>
+        <textarea class="form-textarea" name="Notes" placeholder="Delivery address, preferred date, allergies, etc."></textarea>
+
+        <button type="submit" class="btn btn-red" id="checkout-submit-btn">PLACE ORDER</button>
+
+        <p id="checkout-error" class="form-error" style="display:none;">Something went wrong placing your order. Please try again, or email us directly at <a href="mailto:ritchie.ramdass@vaikivai.ca">ritchie.ramdass@vaikivai.ca</a>.</p>
+
+        <button type="button" id="checkout-back" class="checkout-back">&larr; Back to cart</button>
+      </form>
+    </div>
+
+    <!-- SUCCESS VIEW -->
+    <div id="checkout-success-view" class="form-success" style="display:none;">
+      <h3>Order placed!</h3>
+      <p>Your order has been received — a member of our team will reach out to confirm payment and next steps.</p>
+    </div>
+  </div>
+
+  <script src="cart.js"></script>
+
+</body>
+</html>

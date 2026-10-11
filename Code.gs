@@ -79,13 +79,25 @@ function doPost(e) {
   }
 }
 
+var EXPECTED_HEADERS = ['Timestamp', 'Name', 'Email', 'Phone', 'Type', 'Fulfillment / Event Type', 'Details', 'Total', 'Status'];
+
 function getSheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);
-    sheet.appendRow(['Timestamp', 'Name', 'Email', 'Phone', 'Type', 'Fulfillment / Event Type', 'Details', 'Total', 'Status']);
   }
+
+  // Self-heals a sheet created by an older version of this script (or one
+  // that was never given a header row) instead of silently appending data
+  // under the wrong columns.
+  var headerRange = sheet.getRange(1, 1, 1, EXPECTED_HEADERS.length);
+  var currentHeaders = headerRange.getValues()[0];
+  var headersMatch = EXPECTED_HEADERS.every(function (h, i) { return currentHeaders[i] === h; });
+  if (!headersMatch) {
+    headerRange.setValues([EXPECTED_HEADERS]);
+  }
+
   return sheet;
 }
 
