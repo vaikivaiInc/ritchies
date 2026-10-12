@@ -1368,10 +1368,7 @@ body {
 
 .recipe-card { scroll-margin-top: 20px; }
 
-.recipe-card-actions { margin: -14px 0 30px; }
 
-.recipe-embed { display:flex; justify-content:center; margin:-14px 0 30px; }
-.recipe-embed blockquote { margin:0; }
 
 .recipe-index a.active {
   background: #e60000;
@@ -1379,3 +1376,5 @@ body {
   border-color: #e60000;
 }
 .recipe-card-top { padding: 18px 16px 16px; }
+
+.recipe-card-cta strong a { color: #e0a03c; }
