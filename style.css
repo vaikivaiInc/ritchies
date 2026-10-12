@@ -1369,3 +1369,6 @@ body {
 .recipe-card { scroll-margin-top: 20px; }
 
 .recipe-card-actions { margin: -14px 0 30px; }
+
+.recipe-embed { display:flex; justify-content:center; margin:-14px 0 30px; }
+.recipe-embed blockquote { margin:0; }
