@@ -1200,3 +1200,138 @@ body {
   margin-top: 10px;
   text-decoration: none;
 }
+
+
+/* RECIPE CARD — sized so one screenshot captures the whole card (TikTok) */
+.recipe-card {
+  max-width: 620px;
+  margin: 0 auto 30px;
+  background: #f6efe2;
+  color: #1a1a1a;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 3px solid #d1a13a;
+  text-align: left;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+}
+
+.recipe-card-top {
+  background: #e60000;
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px 12px;
+}
+
+.recipe-card-kicker {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffe2a8;
+  font-weight: bold;
+}
+
+.recipe-card-title {
+  margin: 4px 0 0;
+  font-size: 1.9rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.recipe-card-photo {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  object-position: center 55%;
+}
+
+.recipe-card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: 18px 20px 6px;
+}
+
+.recipe-card h3 {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #e60000;
+  border-bottom: 2px solid #d1a13a;
+  padding-bottom: 3px;
+}
+
+.recipe-card ul,
+.recipe-card ol {
+  margin: 0 0 14px;
+  padding-left: 18px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.recipe-card p {
+  margin: 0 0 14px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.recipe-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #1a1a1a;
+  color: #f6efe2;
+  padding: 10px 20px;
+  margin-top: 6px;
+}
+
+.recipe-card-foot img {
+  height: 64px;
+  width: auto;
+  background: #f6efe2;
+  border-radius: 8px;
+  padding: 3px 6px;
+}
+
+.recipe-card-cta {
+  text-align: right;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.recipe-card-cta strong {
+  display: block;
+  color: #e0a03c;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.recipe-card-cta a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.recipe-actions {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.recipe-actions .btn {
+  display: inline-block;
+  text-decoration: none;
+}
+
+@media (max-width: 520px) {
+  .recipe-card-body {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .recipe-card-title {
+    font-size: 1.5rem;
+  }
+}
