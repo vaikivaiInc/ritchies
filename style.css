@@ -14,7 +14,7 @@ body {
 /* HEADER */
 .header {
   position: relative;
-  background: #000;
+  background: #f6efe2; /* cream — matches the brands band. Swap back to #000 once the reversed (dark-background) logo is ready. */
   padding: 20px 0;
 }
 
@@ -63,15 +63,10 @@ body {
   max-width: 100%;
 }
 
-/* The logo has black and dark-brown artwork (palm, waves, outline, text),
-   which disappears on the black header — so it sits on a white rounded
-   badge. */
 .ritchies-logo {
   height: 130px;
   width: auto;
   max-width: 100%;
-  background: #fff;
-  border-radius: 14px;
 }
 
 .header-tagline {
@@ -80,7 +75,7 @@ body {
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #e0a03c;
+  color: #b3261e;
   text-align: center;
 }
 
@@ -92,7 +87,7 @@ body {
   align-items: center;
   gap: 15px;
   padding: 15px 20px;
-  background: #000;
+  background: #f6efe2;
   border-bottom: 3px solid #d1a13a; /* full-width gold divider before the hero */
 }
 
@@ -106,7 +101,7 @@ body {
 
 .nav-link {
   text-decoration: none;
-  color: #e0a03c;
+  color: #1a1a1a;
   font-weight: bold;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
@@ -115,7 +110,7 @@ body {
 }
 
 .nav-link.active {
-  color: #fff;
+  color: #e60000;
   border-bottom: 2px solid #e60000;
 }
 
