@@ -1335,3 +1335,37 @@ body {
     font-size: 1.5rem;
   }
 }
+
+.recipe-card-meta {
+  margin: 0;
+  padding: 10px 20px 0;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8a5a00;
+}
+
+.recipe-index {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.recipe-index a {
+  background: #f6efe2;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 2px solid #d1a13a;
+}
+
+.recipe-card { scroll-margin-top: 20px; }
+
+.recipe-card-actions { margin: -14px 0 30px; }
