@@ -1378,3 +1378,52 @@ body {
 .recipe-card-top { padding: 18px 16px 16px; }
 
 .recipe-card-cta strong a { color: #e0a03c; }
+
+/* Recipe index grid + extras */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.recipe-tile {
+  display: block;
+  background: #f6efe2;
+  color: #1a1a1a;
+  text-decoration: none;
+  text-align: left;
+  border: 2px solid #d1a13a;
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.2s ease;
+}
+
+.recipe-tile:hover { transform: translateY(-4px); }
+
+.recipe-tile h2 {
+  margin: 6px 0 8px;
+  font-size: 1.25rem;
+  color: #e60000;
+}
+
+.recipe-tile p {
+  margin: 0 0 14px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+.recipe-tile-tag {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #8a5a00;
+}
+
+.recipe-card-note {
+  font-style: italic;
+  color: #6b4a12;
+}
